@@ -3,4 +3,4 @@ Wybrany problem: https://en.wikipedia.org/wiki/Bin_packing_problem
 
 Algorytm 1 - Algorytm wspinaczkowy *in progress*
 
-Algorytm 1 - Algorytm tabu *in progress*
+Algorytm 2 - Algorytm tabu *in progress*
