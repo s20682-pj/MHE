@@ -25,7 +25,8 @@ void simulatedAnnealing(vector<int> solution, int binSize, int quantity, int ite
             }
         }
         if (howManyBin(solution, binSize, quantity) < howManyBin(bestSolution, binSize, quantity)) bestSolution = solution;
-        cout << iteration_counter << " " << howManyBin(solution, binSize, quantity) <<  " " << howManyBin(bestSolution, binSize, quantity) << endl;
+        cout  << "Amounts of bins in this run: " << howManyBin(solution, binSize, quantity) << endl << "Amounts of bins in best run: "
+              << howManyBin(bestSolution, binSize, quantity) << endl << "Iterations: " << iteration_counter << endl;
         iteration_counter++;
     }
 }

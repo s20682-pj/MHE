@@ -21,7 +21,7 @@ void hillClimbing(vector<int> solution, int binSize, int quantity, int iteration
                 lowestAmountOfBins = amountOfBins;
             }
         }
-        cout  << "Amounts of bins in first run: " << amountOfBins << endl << "Amounts of bins in best run: "
+        cout  << "Amounts of bins in this run: " << amountOfBins << endl << "Amounts of bins in best run: "
         << lowestAmountOfBins << endl << "Iterations: " << i << endl;
     }
 }
@@ -35,7 +35,7 @@ void hillClimbingRandom(vector<int> solution, int binSize, int quantity, int ite
         if (amountOfBins < lowestAmountOfBins) {
             lowestAmountOfBins = amountOfBins;
         }
-        cout  << "Amounts of bins in first run: " << amountOfBins << endl << "Amounts of bins in best run: "
+        cout  << "Amounts of bins in this run: " << amountOfBins << endl << "Amounts of bins in best run: "
         << lowestAmountOfBins << endl << "Iterations: " << i << endl;
     }
 }

@@ -7,23 +7,23 @@
 #include "data.h"
 
 using namespace std;
-std::vector<int> loadProblem(std::string fname) {
-    std::vector<int> problem;
-    std::fstream file;
-    std::string line;
+vector<int> loadProblem(string fname) {
+    vector<int> problem;
+    fstream file;
+    string line;
     int x;
 
     file.open(fname);
     if ( file.is_open() ) {
         while ( file ) {
-            std::getline (file, line);
-            std::stringstream sline(line);
+            getline (file, line);
+            stringstream sline(line);
             sline >> x;
             problem.push_back(x);
         }
     }
     else {
-        std::cout << "Couldn't open file\n";
+        cout << "Couldn't open file\n";
     }
     file.close();
 
@@ -31,7 +31,6 @@ std::vector<int> loadProblem(std::string fname) {
 }
 
 auto args = [](int argc, char** argv, string name, auto default_value) -> decltype(default_value) {
-    using namespace std;
     string paramname = "";
     any ret = default_value;
     for (auto argument: vector<string>(argv, argv + argc)) {
@@ -56,7 +55,7 @@ int main(int argc, char **argv) {
 
     auto fname = args(argc, argv, "fname", string(""));
     auto iterations = args(argc, argv, "iterations", 1000);
-    auto method = args(argc, argv, "method", string("hillClimbing"));
+    auto method = args(argc, argv, "method", string("all"));
     auto tabu_size = args(argc, argv, "tabu_size", 100);
     auto quantity = args(argc, argv, "quantity", 500);
     auto binSize = args(argc, argv, "binSize", 15);
@@ -67,13 +66,10 @@ int main(int argc, char **argv) {
         cout<<"Wpisz rozmiar i wciśnij enter"<<endl;
         int trashSize;
         while(cin >> trashSize){
-             data.push_back(trashSize);
+            data.push_back(trashSize);
         }
     } else{
         data = loadProblem(fname);
-    }
-    for (int i = 0; i < data.size(); ++i) {
-        cout << data[i]<<endl;
     }
 
     if (method == "all") {
@@ -81,13 +77,13 @@ int main(int argc, char **argv) {
         hillClimbingRandom(data, binSize, quantity, iterations);
         tabuSearch(data, binSize, quantity, tabu_size, iterations);
         simulatedAnnealing(data, binSize, quantity, iterations);
-    } else if (method == "hillClimbing") {
+    } else if (method == "hc") {
         hillClimbing(data, binSize, quantity, iterations);
-    } else if (method == "hillClimbingRandom") {
+    } else if (method == "random") {
         hillClimbingRandom(data, binSize, quantity, iterations);
     } else if (method == "tabu") {
         tabuSearch(data, binSize, quantity, tabu_size, iterations);
-    } else if (method == "simulatedAnnealing") {
+    } else if (method == "sa") {
         simulatedAnnealing(data, binSize, quantity, iterations);
     }
 
