@@ -5,7 +5,7 @@
 #include <iostream>
 
 using namespace std;
-void tabuSearch(vector<int> solution, int binSize, int quantity, int tabu_size, int iterations){
+vector<int> tabuSearch(vector<int> solution, int binSize, int quantity, int tabu_size, int iterations){
 
     int amountOfBins = howManyBin(solution, binSize, quantity);
     int lowestAmountOfBins = amountOfBins;

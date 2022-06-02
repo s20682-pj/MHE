@@ -5,7 +5,7 @@
 #include <ctime>
 
 using namespace std;
-void hillClimbing(vector<int> solution, int binSize, int quantity, int iterations) {
+vector<int> hillClimbing(vector<int> solution, int binSize, int quantity, int iterations) {
 
     int amountOfBins = howManyBin(solution, binSize, quantity);
     int lowestAmountOfBins = amountOfBins;
@@ -30,7 +30,7 @@ void hillClimbing(vector<int> solution, int binSize, int quantity, int iteration
      }
 }
 
-void hillClimbingRandom(vector<int> solution, int binSize, int quantity, int iterations) {
+vector<int> hillClimbingRandom(vector<int> solution, int binSize, int quantity, int iterations) {
     int amountOfBins, lowestAmountOfBins = howManyBin(solution, binSize, quantity);
     int iteration_counter = 0;
 

@@ -5,7 +5,7 @@
 #include <random>
 
 using namespace std;
-void simulatedAnnealing(vector<int> solution, int binSize, int quantity, int iterations, bool uniformRealDistributionIsSet) {
+vector<int> simulatedAnnealing(vector<int> solution, int binSize, int quantity, int iterations, bool uniformRealDistributionIsSet) {
 
     int result, nextResult, bestResult;
     double boltzmannDistribution;
