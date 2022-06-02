@@ -29,3 +29,5 @@ Podczas uruchamiania możnna wywołać następujące argumenty:
 -binSize - rozmiar naszego "śmietnika"
 
 Dołączony zostaje również skrypt, który ukazuje, jak szybko dany algorytm odnajduje najlepsze rozwiązanie, dzięki czemu możemy określić, która metoda jest najlepsza dla danego problemu.
+
+W folderze znajdują się również 2 pliki z przykładowymi danymi. Paramatry mają jako default ustawione najbardziej sprzyjające wartości.
