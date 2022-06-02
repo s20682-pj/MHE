@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
     vector<int> data;
 
     if(fname==""){
-        cout<<"Wpisz rozmiar i wciśnij enter"<<endl;
+        cout<<"Enter size and press enter"<<endl;
         int trashSize;
         while(cin >> trashSize){
             data.push_back(trashSize);
@@ -89,6 +89,5 @@ int main(int argc, char **argv) {
     }
 
     return 0;
-
 
 }
