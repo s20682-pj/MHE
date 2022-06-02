@@ -44,7 +44,7 @@ vector<int> tabuSearch(vector<int> solution, int binSize, int quantity, int tabu
             break;
         }
     }
-    cout << "Amounts of bins in best run: " << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
+    cout << "Amount of bins in best run: " << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
     for(auto i: bestSolution){
         cout << i << ", ";
     }

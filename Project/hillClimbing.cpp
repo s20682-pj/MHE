@@ -24,7 +24,7 @@ vector<int> hillClimbing(vector<int> solution, int binSize, int quantity, int it
         }
 
     }
-    cout << "Amounts of bins in best run: " << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
+    cout << "Amount of bins in best run: " << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
      for(auto i: solution){
         cout << i << ", ";
      }
@@ -41,7 +41,7 @@ vector<int> hillClimbingRandom(vector<int> solution, int binSize, int quantity, 
             lowestAmountOfBins = amountOfBins;
         }
     }
-    cout << "Amounts of bins in best run: " << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
+    cout << "Amount of bins in best run: " << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
     for(auto i: solution){
         cout << i << ", ";
     }

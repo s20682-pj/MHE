@@ -38,7 +38,7 @@ vector<int> simulatedAnnealing(vector<int> solution, int binSize, int quantity, 
             bestResult = result;
         }
     }
-    cout << "Amounts of bins in best run: " << bestResult << endl << "Iterations: " << iteration_counter << endl;
+    cout << "Amount of bins in best run: " << bestResult << endl << "Iterations: " << iteration_counter << endl;
     for(auto i: bestSolution){
         cout << i << ", ";
     }
