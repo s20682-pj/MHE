@@ -59,6 +59,7 @@ int main(int argc, char **argv) {
     auto tabu_size = args(argc, argv, "tabu_size", 100);
     auto quantity = args(argc, argv, "quantity", 500);
     auto binSize = args(argc, argv, "binSize", 15);
+    auto uniformRealDistributionIsSet = args(argc, argv, "uniformRealDistributionIsSet", false);
 
     vector<int> data;
 
@@ -76,7 +77,7 @@ int main(int argc, char **argv) {
         hillClimbing(data, binSize, quantity, iterations);
         hillClimbingRandom(data, binSize, quantity, iterations);
         tabuSearch(data, binSize, quantity, tabu_size, iterations);
-        simulatedAnnealing(data, binSize, quantity, iterations);
+        simulatedAnnealing(data, binSize, quantity, iterations, uniformRealDistributionIsSet);
     } else if (method == "hc") {
         hillClimbing(data, binSize, quantity, iterations);
     } else if (method == "random") {
@@ -84,7 +85,7 @@ int main(int argc, char **argv) {
     } else if (method == "tabu") {
         tabuSearch(data, binSize, quantity, tabu_size, iterations);
     } else if (method == "sa") {
-        simulatedAnnealing(data, binSize, quantity, iterations);
+        simulatedAnnealing(data, binSize, quantity, iterations, uniformRealDistributionIsSet);
     }
 
     return 0;

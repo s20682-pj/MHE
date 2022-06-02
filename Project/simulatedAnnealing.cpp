@@ -5,28 +5,38 @@
 #include <random>
 
 using namespace std;
-void simulatedAnnealing(vector<int> solution, int binSize, int quantity, int iterations) {
+void simulatedAnnealing(vector<int> solution, int binSize, int quantity, int iterations, bool uniformRealDistributionIsSet) {
 
+    int result, nextResult, bestResult;
+    double boltzmannDistribution;
     vector<int> bestSolution = solution;
     vector<int> nextSolution = solution;
-    int iteration_counter = 1;
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_real_distribution<> uniformRealDistribution(0.0, 1.0);
+    normal_distribution<double> normalDistribution(0.5,0.25);
 
     for (int i = 0; i < iterations; ++i) {
-        shuffle(begin(nextSolution), end(nextSolution), mt19937(random_device()()));
-        if (howManyBin(nextSolution, binSize, quantity) < howManyBin(solution, binSize, quantity)) {
+        shuffle(begin(nextSolution), end(nextSolution), gen);
+        result = howManyBin(solution, binSize, quantity);
+        nextResult = howManyBin(nextSolution, binSize, quantity);
+        boltzmannDistribution = exp(-abs(result - nextResult) / (iterations/(i+1)));
+        if ( nextResult < result ){
             solution = nextSolution;
-        } else {
-            random_device rd;
-            mt19937 gen(rd());
-            uniform_real_distribution<> dis(0.0, 1.0);
-            if (dis(gen) < exp(-abs(howManyBin(solution, binSize, quantity) - howManyBin(nextSolution, binSize, quantity)) *
-                               iteration_counter / 1000)) {
-                solution = nextSolution;
-            }
+            result = nextResult;
+        } else if (uniformRealDistributionIsSet && (uniformRealDistribution(gen) < boltzmannDistribution)) {
+            solution = nextSolution;
+            result = nextResult;
+        } else if (!uniformRealDistributionIsSet && (normalDistribution(gen) < boltzmannDistribution)) {
+            solution = nextSolution;
+            result = nextResult;
         }
-        if (howManyBin(solution, binSize, quantity) < howManyBin(bestSolution, binSize, quantity)) bestSolution = solution;
-        cout  << "Amounts of bins in this run: " << howManyBin(solution, binSize, quantity) << endl << "Amounts of bins in best run: "
-              << howManyBin(bestSolution, binSize, quantity) << endl << "Iterations: " << iteration_counter << endl;
-        iteration_counter++;
+        bestResult = howManyBin(bestSolution, binSize, quantity);
+        if (result < bestResult){
+            bestSolution = solution;
+            bestResult = result;
+        }
+        cout  << "Amounts of bins in this run: " << result << endl << "Amounts of bins in best run: "
+        << bestResult << endl << "Iterations: " << i << endl;
     }
 }
