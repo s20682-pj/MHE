@@ -15,12 +15,13 @@ void simulatedAnnealing(vector<int> solution, int binSize, int quantity, int ite
     mt19937 gen(rd());
     uniform_real_distribution<> uniformRealDistribution(0.0, 1.0);
     normal_distribution<double> normalDistribution(0.5,0.25);
+    int iteration_counter = 0;
 
-    for (int i = 0; i < iterations; ++i) {
+    for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
         shuffle(begin(nextSolution), end(nextSolution), gen);
         result = howManyBin(solution, binSize, quantity);
         nextResult = howManyBin(nextSolution, binSize, quantity);
-        boltzmannDistribution = exp(-abs(result - nextResult) / (iterations/(i+1)));
+        boltzmannDistribution = exp(-abs(result - nextResult) / (iterations/(iteration_counter+1)));
         if ( nextResult < result ){
             solution = nextSolution;
             result = nextResult;
@@ -36,7 +37,9 @@ void simulatedAnnealing(vector<int> solution, int binSize, int quantity, int ite
             bestSolution = solution;
             bestResult = result;
         }
-        cout  << "Amounts of bins in this run: " << result << endl << "Amounts of bins in best run: "
-        << bestResult << endl << "Iterations: " << i << endl;
+    }
+    cout << "Amounts of bins in best run: " << bestResult << endl << "Iterations: " << iteration_counter << endl;
+    for(auto i: bestSolution){
+        cout << i << ", ";
     }
 }

@@ -13,9 +13,10 @@ void tabuSearch(vector<int> solution, int binSize, int quantity, int tabu_size, 
     vector<vector<int>> tabuList = {solution};
     bool betterSolutionIsFound;
     int tabuListOffset = 1;
+    int iteration_counter = 0;
     srand((unsigned) time(NULL));
 
-    for (int i = 0; i < iterations; ++i) {
+    for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
         betterSolutionIsFound = false;
         int x = rand() % (end(solution) - begin(solution));
         for (int j = 0; j < solution.size(); ++j) {
@@ -42,7 +43,10 @@ void tabuSearch(vector<int> solution, int binSize, int quantity, int tabu_size, 
         else{
             break;
         }
-        cout  << "Amounts of bins in this run: " << amountOfBins << endl << "Amounts of bins in best run: "
-        << lowestAmountOfBins << endl << "Iterations: " << i << endl;
     }
+    cout << "Amounts of bins in best run: " << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
+    for(auto i: bestSolution){
+        cout << i << ", ";
+    }
+
 }
