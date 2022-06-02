@@ -5,19 +5,19 @@
 #include <ctime>
 
 using namespace std;
-void hillClimbing(vector<int> data, int binSize, int quantity, int iterations) {
+void hillClimbing(vector<int> solution, int binSize, int quantity, int iterations) {
 
-    int amountOfBins = howManyBin(data, binSize, quantity);
+    int amountOfBins = howManyBin(solution, binSize, quantity);
     int lowestAmountOfBins = amountOfBins;
     int iteration_counter = 0;
 
     srand((unsigned) time(NULL));
 
     for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
-        int x = rand() % (end(data) - begin(data));
-        for (int j = 0; j < data.size(); ++j) {
-            swap(data[x], data[j]);
-            amountOfBins = howManyBin(data, binSize, quantity);
+        int x = rand() % (end(solution) - begin(solution));
+        for (int j = 0; j < solution.size(); ++j) {
+            swap(solution[x], solution[j]);
+            amountOfBins = howManyBin(solution, binSize, quantity);
             if (amountOfBins < lowestAmountOfBins) {
                 lowestAmountOfBins = amountOfBins;
             }
@@ -25,7 +25,7 @@ void hillClimbing(vector<int> data, int binSize, int quantity, int iterations) {
 
     }
     cout << "Amounts of bins in best run: " << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
-     for(auto i: data){
+     for(auto i: solution){
         cout << i << ", ";
      }
 }
