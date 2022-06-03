@@ -55,7 +55,7 @@ int main(int argc, char **argv) {
 
     auto fname = args(argc, argv, "fname", string(""));
     auto iterations = args(argc, argv, "iterations", 1000);
-    auto method = args(argc, argv, "method", string("all"));
+    auto method = args(argc, argv, "method", string("hc"));
     auto tabu_size = args(argc, argv, "tabu_size", 100);
     auto quantity = args(argc, argv, "quantity", 500);
     auto binSize = args(argc, argv, "binSize", 15);
@@ -73,12 +73,7 @@ int main(int argc, char **argv) {
         data = loadProblem(fname);
     }
 
-    if (method == "all") {
-        hillClimbing(data, binSize, quantity, iterations);
-        hillClimbingRandom(data, binSize, quantity, iterations);
-        tabuSearch(data, binSize, quantity, tabu_size, iterations);
-        simulatedAnnealing(data, binSize, quantity, iterations, uniformRealDistributionIsSet);
-    } else if (method == "hc") {
+    if (method == "hc") {
         hillClimbing(data, binSize, quantity, iterations);
     } else if (method == "random") {
         hillClimbingRandom(data, binSize, quantity, iterations);
