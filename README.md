@@ -20,7 +20,7 @@ Podczas uruchamiania możnna wywołać następujące argumenty:
 
 -iterations - ilość iteracji algorytmów
 
--method - który algorytm ma zostać uruchomiony (all - dla wszystkich, hc dla algorytmu wspinaczkowy w wersji deterministycznej, random dla algorytmu wspinaczkowy w wersji stochastycznej, tabu - dla algorytmu tabu, sa - dla algorytmu symulowanego wyżarzania) [domyślnie jest ustawiona wartość all]
+-method - który algorytm ma zostać uruchomiony (hc dla algorytmu wspinaczkowy w wersji deterministycznej, random dla algorytmu wspinaczkowy w wersji stochastycznej, tabu - dla algorytmu tabu, sa - dla algorytmu symulowanego wyżarzania) [domyślnie jest ustawiona wartość hc]
 
 -tabu_size - rozmiar naszego tabu
 
