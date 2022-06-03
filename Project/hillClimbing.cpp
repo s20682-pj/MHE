@@ -36,7 +36,7 @@ vector<int> hillClimbing(vector<int> solution, int binSize, int quantity, int it
 
 }
 
-vector<int> hillClimbingRandom(vector<int> solution, int binSize, int quantity, int iterations, string showBestorAll) {
+vector<int> hillClimbingRandom(vector<int> solution, int binSize, int quantity, int iterations, string showBestOrAll) {
     int amountOfBins, lowestAmountOfBins = howManyBin(solution, binSize, quantity);
     int iteration_counter;
 
@@ -46,9 +46,14 @@ vector<int> hillClimbingRandom(vector<int> solution, int binSize, int quantity, 
         if (amountOfBins < lowestAmountOfBins) {
             lowestAmountOfBins = amountOfBins;
         }
+        if(showBestOrAll == "all"){
+            cout  << "Amounts of bins in first run: " << amountOfBins << endl << "Amounts of bins in best run: "
+                  << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
+        }
     }
-    cout << "Amount of bins in best run: " << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
-    for(auto i: solution){
-        cout << i << ", ";
-    }
+    if(showBestOrAll == "best"){
+        cout << "Amount of bins in best run: " << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
+        for(auto i: solution){
+            cout << i << ", ";
+        }}
 }
