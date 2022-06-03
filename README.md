@@ -16,17 +16,21 @@ Algorytm 4 - Algorytm symulowanego wyżarzania
 
 Podczas uruchamiania możnna wywołać następujące argumenty:
 
--fname - nazwa pliku z danymi, jeżeli pozostanie puste, to nastąpi przejście do samodzielnego wpisania danych
+-fname - nazwa pliku z danymi, jeżeli pozostanie puste, to nastąpi przejście do samodzielnego wpisania danych (string)
 
--iterations - ilość iteracji algorytmów
+-iterations - ilość iteracji algorytmów (int)
 
 -method - który algorytm ma zostać uruchomiony (hc dla algorytmu wspinaczkowy w wersji deterministycznej, random dla algorytmu wspinaczkowy w wersji stochastycznej, tabu - dla algorytmu tabu, sa - dla algorytmu symulowanego wyżarzania) [domyślnie jest ustawiona wartość hc]
 
--tabu_size - rozmiar naszego tabu
+-tabu_size - rozmiar naszego tabu (int)
 
--quantity - ile przedmiotów ma zostać sprawdzonych
+-quantity - ile przedmiotów ma zostać sprawdzonych (int)
 
--binSize - rozmiar naszego "śmietnika"
+-binSize - rozmiar naszego "śmietnika" (int)
+
+-uniformRealDistributionIsSet - wartość dla symulowanego wyżarzania, która definiuje rodzaj rozkładu (true/false)
+
+-showAllOrBest - pokaż wszystkie wyniki lub najlepszą kombinację (best/all)
 
 Dołączony zostaje również skrypt, który ukazuje, jak szybko dany algorytm odnajduje najlepsze rozwiązanie, dzięki czemu możemy określić, która metoda jest najlepsza dla danego problemu.
 
