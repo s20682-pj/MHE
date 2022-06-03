@@ -60,6 +60,7 @@ int main(int argc, char **argv) {
     auto quantity = args(argc, argv, "quantity", 500);
     auto binSize = args(argc, argv, "binSize", 15);
     auto uniformRealDistributionIsSet = args(argc, argv, "uniformRealDistributionIsSet", false);
+    auto showBestOrAll = args(argc, argv, "showBestOrAll", string("best"));
 
     vector<int> data;
 
@@ -74,13 +75,13 @@ int main(int argc, char **argv) {
     }
 
     if (method == "hc") {
-        hillClimbing(data, binSize, quantity, iterations);
+        hillClimbing(data, binSize, quantity, iterations, showBestOrAll);
     } else if (method == "random") {
-        hillClimbingRandom(data, binSize, quantity, iterations);
+        hillClimbingRandom(data, binSize, quantity, iterations, showBestOrAll);
     } else if (method == "tabu") {
-        tabuSearch(data, binSize, quantity, tabu_size, iterations);
+        tabuSearch(data, binSize, quantity, tabu_size, iterations, showBestOrAll);
     } else if (method == "sa") {
-        simulatedAnnealing(data, binSize, quantity, iterations, uniformRealDistributionIsSet);
+        simulatedAnnealing(data, binSize, quantity, iterations, uniformRealDistributionIsSet, showBestOrAll);
     }
 
     return 0;

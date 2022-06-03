@@ -5,7 +5,7 @@
 #include <ctime>
 
 using namespace std;
-vector<int> hillClimbing(vector<int> solution, int binSize, int quantity, int iterations) {
+vector<int> hillClimbing(vector<int> solution, int binSize, int quantity, int iterations, string showBestOrAll) {
 
     int amountOfBins = howManyBin(solution, binSize, quantity);
     int lowestAmountOfBins = amountOfBins;
@@ -22,15 +22,21 @@ vector<int> hillClimbing(vector<int> solution, int binSize, int quantity, int it
                 lowestAmountOfBins = amountOfBins;
             }
         }
+        if(showBestOrAll == "all"){
+            cout  << "Amounts of bins in first run: " << amountOfBins << endl << "Amounts of bins in best run: "
+                  << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
+        }
 
     }
+    if(showBestOrAll == "best"){
     cout << "Amount of bins in best run: " << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
      for(auto i: solution){
         cout << i << ", ";
-     }
+     }}
+
 }
 
-vector<int> hillClimbingRandom(vector<int> solution, int binSize, int quantity, int iterations) {
+vector<int> hillClimbingRandom(vector<int> solution, int binSize, int quantity, int iterations, string showBestorAll) {
     int amountOfBins, lowestAmountOfBins = howManyBin(solution, binSize, quantity);
     int iteration_counter;
 

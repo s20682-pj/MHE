@@ -5,7 +5,7 @@
 #include <random>
 
 using namespace std;
-vector<int> simulatedAnnealing(vector<int> solution, int binSize, int quantity, int iterations, bool uniformRealDistributionIsSet) {
+vector<int> simulatedAnnealing(vector<int> solution, int binSize, int quantity, int iterations, bool uniformRealDistributionIsSet, string showBestOrAll) {
 
     int result = howManyBin(solution, binSize, quantity);
     int nextResult, bestResult;
@@ -39,9 +39,15 @@ vector<int> simulatedAnnealing(vector<int> solution, int binSize, int quantity, 
             bestSolution = solution;
             bestResult = result;
         }
+        if(showBestOrAll == "all"){
+            cout  << "Amounts of bins in first run: " << result << endl << "Amounts of bins in best run: "
+                  << bestResult << endl << "Iterations: " << iteration_counter << endl;
+        }
     }
-    cout << "Amount of bins in best run: " << bestResult << endl << "Iterations: " << iteration_counter << endl;
-    for(auto i: bestSolution){
-        cout << i << ", ";
-    }
+
+    if(showBestOrAll == "best"){
+        cout << "Amount of bins in best run: " << bestResult << endl << "Iterations: " << iteration_counter << endl;
+        for(auto i: bestSolution){
+            cout << i << ", ";
+        }}
 }

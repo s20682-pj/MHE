@@ -5,7 +5,7 @@
 #include <iostream>
 
 using namespace std;
-vector<int> tabuSearch(vector<int> solution, int binSize, int quantity, int tabu_size, int iterations){
+vector<int> tabuSearch(vector<int> solution, int binSize, int quantity, int tabu_size, int iterations, string showBestOrAll){
 
     int amountOfBins = howManyBin(solution, binSize, quantity);
     int lowestAmountOfBins = amountOfBins;
@@ -43,10 +43,15 @@ vector<int> tabuSearch(vector<int> solution, int binSize, int quantity, int tabu
         else{
             break;
         }
+        if(showBestOrAll == "all"){
+            cout  << "Amounts of bins in first run: " << amountOfBins << endl << "Amounts of bins in best run: "
+                  << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
+        }
     }
-    cout << "Amount of bins in best run: " << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
-    for(auto i: bestSolution){
-        cout << i << ", ";
-    }
+    if(showBestOrAll == "best"){
+        cout << "Amount of bins in best run: " << lowestAmountOfBins << endl << "Iterations: " << iteration_counter << endl;
+        for(auto i: solution){
+            cout << i << ", ";
+        }}
 
 }
