@@ -16,7 +16,7 @@ vector<int> simulatedAnnealing(vector<int> solution, int binSize, int quantity, 
     mt19937 gen(rd());
     uniform_real_distribution<> uniformRealDistribution(0.0, 1.0);
     normal_distribution<double> normalDistribution(0.5,0.25);
-    int iteration_counter = 0;
+    int iteration_counter;
 
     for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
         shuffle(begin(nextSolution), end(nextSolution), gen);

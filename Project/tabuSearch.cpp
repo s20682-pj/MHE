@@ -13,7 +13,7 @@ vector<int> tabuSearch(vector<int> solution, int binSize, int quantity, int tabu
     vector<vector<int>> tabuList = {solution};
     bool betterSolutionIsFound;
     int tabuListOffset = 1;
-    int iteration_counter = 0;
+    int iteration_counter;
     srand((unsigned) time(NULL));
 
     for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {

@@ -9,7 +9,7 @@ vector<int> hillClimbing(vector<int> solution, int binSize, int quantity, int it
 
     int amountOfBins = howManyBin(solution, binSize, quantity);
     int lowestAmountOfBins = amountOfBins;
-    int iteration_counter = 0;
+    int iteration_counter;
 
     srand((unsigned) time(NULL));
 
@@ -32,7 +32,7 @@ vector<int> hillClimbing(vector<int> solution, int binSize, int quantity, int it
 
 vector<int> hillClimbingRandom(vector<int> solution, int binSize, int quantity, int iterations) {
     int amountOfBins, lowestAmountOfBins = howManyBin(solution, binSize, quantity);
-    int iteration_counter = 0;
+    int iteration_counter;
 
     for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
         shuffle(begin(solution), end(solution), mt19937(random_device()()));
