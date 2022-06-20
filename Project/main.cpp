@@ -7,27 +7,30 @@
 #include "data.h"
 
 using namespace std;
-vector<int> loadProblem(string fname) {
-    vector<int> problem;
+vector<pair<int, int>> loadProblem(string fname){
+    vector<pair<int, int>> v;
+    pair<int, int> vv;
     fstream file;
-    string line;
-    int x;
-
     file.open(fname);
-    if ( file.is_open() ) {
-        while ( file ) {
-            getline (file, line);
-            stringstream sline(line);
-            sline >> x;
-            problem.push_back(x);
+    stringstream ss;
+    string tmp;
+    int x,y;
+    if(file.is_open()){
+        while(!file.eof()){
+            getline(file, tmp, ';');
+            ss.str(tmp);
+            ss >> x;
+            ss.clear();
+            getline(file, tmp);
+            ss.str(tmp);
+            ss >> y;
+            ss.clear();
+            vv = {x, y};
+            v.push_back(vv);
         }
+        file.close();
     }
-    else {
-        cout << "Couldn't open file\n";
-    }
-    file.close();
-
-    return problem;
+    return v;
 }
 
 auto args = [](int argc, char** argv, string name, auto default_value) -> decltype(default_value) {
@@ -62,11 +65,11 @@ int main(int argc, char **argv) {
     auto uniformRealDistributionIsSet = args(argc, argv, "uniformRealDistributionIsSet", false);
     auto showBestOrAll = args(argc, argv, "showBestOrAll", string("best"));
 
-    vector<int> data;
+    vector<pair<int, int>> data;
 
     if(fname==""){
         cout<<"Enter size and press enter"<<endl;
-        int trashSize;
+        pair<int, int> trashSize;
         while(cin >> trashSize){
             data.push_back(trashSize);
         }
@@ -75,9 +78,9 @@ int main(int argc, char **argv) {
     }
 
     if (method == "hc") {
-        hillClimbing(data, binSize, quantity, iterations, showBestOrAll);
+        hillClimbing(data, binSize, quantity, iterations);
     } else if (method == "random") {
-        hillClimbingRandom(data, binSize, quantity, iterations, showBestOrAll);
+        hillClimbingRandom(data, binSize, quantity, iterations);
     } else if (method == "tabu") {
         tabuSearch(data, binSize, quantity, tabu_size, iterations, showBestOrAll);
     } else if (method == "sa") {

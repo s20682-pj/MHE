@@ -7,7 +7,7 @@
 using namespace std;
 vector<int> simulatedAnnealing(vector<int> solution, int binSize, int quantity, int iterations, bool uniformRealDistributionIsSet, string showBestOrAll) {
 
-    int result = howManyBin(solution, binSize, quantity);
+    int result = knapsack(solution, binSize, quantity);
     int nextResult, bestResult;
     double boltzmannDistribution;
     vector<int> bestSolution = solution;
@@ -20,7 +20,7 @@ vector<int> simulatedAnnealing(vector<int> solution, int binSize, int quantity, 
 
     for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
         shuffle(begin(nextSolution), end(nextSolution), gen);
-        nextResult = howManyBin(nextSolution, binSize, quantity);
+        nextResult = knapsack(nextSolution, binSize, quantity);
         boltzmannDistribution = exp(-abs(result - nextResult) / (iterations/(iteration_counter+1)));
         if ( nextResult < result ){
             solution = nextSolution;
@@ -34,7 +34,7 @@ vector<int> simulatedAnnealing(vector<int> solution, int binSize, int quantity, 
             solution = nextSolution;
             result = nextResult;
         }
-        bestResult = howManyBin(bestSolution, binSize, quantity);
+        bestResult = knapsack(bestSolution, binSize, quantity);
         if (result < bestResult){
             bestSolution = solution;
             bestResult = result;

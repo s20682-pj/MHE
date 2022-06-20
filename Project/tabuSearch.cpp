@@ -7,7 +7,7 @@
 using namespace std;
 vector<int> tabuSearch(vector<int> solution, int binSize, int quantity, int tabu_size, int iterations, string showBestOrAll){
 
-    int amountOfBins = howManyBin(solution, binSize, quantity);
+    int amountOfBins = knapsack(solution, binSize, quantity);
     int lowestAmountOfBins = amountOfBins;
     vector<int> bestSolution = solution;
     vector<vector<int>> tabuList = {solution};
@@ -21,7 +21,7 @@ vector<int> tabuSearch(vector<int> solution, int binSize, int quantity, int tabu
         int x = rand() % (end(solution) - begin(solution));
         for (int j = 0; j < solution.size(); ++j) {
             swap(solution[x], solution[j]);
-            amountOfBins = howManyBin(solution, binSize, quantity);
+            amountOfBins = knapsack(solution, binSize, quantity);
             bool isNotInTabu = find(tabuList.begin(), tabuList.end(), solution) == tabuList.end();
             if (amountOfBins <= lowestAmountOfBins and  isNotInTabu){
                 lowestAmountOfBins = amountOfBins;

@@ -2,15 +2,15 @@
 #include <array>
 #include <vector>
 
-#ifndef BINPACKINGPROBLEM_DATA_H
-#define BINPACKINGPROBLEM_DATA_H
+#ifndef KNAPSACKPROBLEM_DATA_H
+#define KNAPSACKPROBLEM_DATA_H
 
 using namespace std;
 
-int howManyBin(vector<int> data, int binSize, int quantity);
-vector<int> hillClimbingRandom(vector<int> data, int binSize, int quantity, int iterations, string showBestOrAll);
-vector<int> hillClimbing(vector<int> data, int binSize, int quantity, int iterations, string showBestOrAll);
-vector<int> tabuSearch(vector<int> data, int binSize, int quantity, int tabuSize, int iterations, string showBestOrAll);
-vector<int> simulatedAnnealing(vector<int> solution, int binSize, int quantity, int iterations, bool uniformRealDistributionIsSet, string showBestOrAll);
+int knapsack(vector<pair<int, int>> data, int backpackSize, int quantity);
+vector<int> hillClimbing(vector<pair<int, int>> data, int backpackSize, int quantity, int iterations);
+vector<int> hillClimbingRandom(vector<pair<int, int>> data, int binSize, int quantity, int iterations;
+vector<int> tabuSearch(vector<pair<int, int>> data, int binSize, int quantity, int tabuSize, int iterations, string showBestOrAll);
+vector<int> simulatedAnnealing(vector<pair<int, int>> data, int binSize, int quantity, int iterations, bool uniformRealDistributionIsSet, string showBestOrAll);
 
-#endif //BINPACKINGPROBLEM_DATA_H
+#endif //KNAPSACKPROBLEM_DATA_H

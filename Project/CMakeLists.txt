@@ -6,4 +6,4 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(BinPackingProblem
         main.cpp
         hillClimbing.cpp
-        tabuSearch.cpp simulatedAnnealing.cpp howManyBin.cpp data.h)
+        tabuSearch.cpp simulatedAnnealing.cpp knapsack.cpp data.h)
