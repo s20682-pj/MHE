@@ -4,7 +4,7 @@
 
 using namespace std;
 
-vector<vector<bool>> generatePopulation(int populationSize, int dataSize){
+vector<vector<bool>> generatePopulation(int populationSize){
     vector<vector<bool>> population;
     vector<bool> binary;
     bool randomBit;
@@ -23,7 +23,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
     //generate chromosomes
     shuffle(begin(data), end(data), mt19937(random_device()()));
     vector<vector<bool>> population;
-    population = generatePopulation(populationSize, data.size());
+    population = generatePopulation(populationSize);
     vector<int> fitness;
 
     //show data
@@ -39,7 +39,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
         int sumInBackpack = 0;
         int valueInBackpack = 0;
         for (int i = 0; i < data.size(); ++i) {
-            if(population[k][i]){
+            if(population[k][i] and i < populationSize){
                 int size = data[i].first;
                 int value = data[i].second;
                 if (sumInBackpack + size <= backpackSize){
@@ -76,7 +76,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
 
 
     vector<int> contestantFitness;
-    vector<bool> contestant;
+    vector<int> contestant;
     vector<int> parent;
 
  //   for(int i=0; i < populationSize; i++){
@@ -88,14 +88,18 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
                 random1 = random1 - fitness[z];
                 z++;
             } while (random1 > 0);
+
             contestantFitness.push_back(fitness[z]);
             contestant.push_back(z);
+
         }
 
+//        cout << "contestantFitness" << endl;
 //        for(auto c: contestantFitness){
 //            cout << c << endl;
 //        }
 //
+//        cout << "contestant" << endl;
 //        for(auto d: contestant){
 //            cout << d << endl;
 //        }
