@@ -7,10 +7,10 @@
 
 using namespace std;
 
-int knapsack(vector<pair<int, int>> data, int backpackSize, int quantity);
-vector<int> hillClimbing(vector<pair<int, int>> data, int backpackSize, int quantity, int iterations);
-vector<int> hillClimbingRandom(vector<pair<int, int>> data, int binSize, int quantity, int iterations;
-vector<int> tabuSearch(vector<pair<int, int>> data, int binSize, int quantity, int tabuSize, int iterations, string showBestOrAll);
-vector<int> simulatedAnnealing(vector<pair<int, int>> data, int binSize, int quantity, int iterations, bool uniformRealDistributionIsSet, string showBestOrAll);
-
+int knapsack(vector<pair<int, int>> data, int backpackSize);
+vector<pair<int,int>> hillClimbing(vector<pair<int, int>> data, int backpackSize, int iterations);
+vector<pair<int,int>> hillClimbingRandom(vector<pair<int, int>> data, int backpackSize, int iterations);
+vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int binSize, int quantity, int tabuSize, int iterations, string showBestOrAll);
+vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int binSize, int quantity, int iterations, bool uniformRealDistributionIsSet, string showBestOrAll);
+vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int iterations, int populationSize);
 #endif //KNAPSACKPROBLEM_DATA_H

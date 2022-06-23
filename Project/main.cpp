@@ -14,7 +14,7 @@ vector<pair<int, int>> loadProblem(string fname){
     file.open(fname);
     stringstream ss;
     string tmp;
-    int x,y;
+    int x,y = 0;
     if(file.is_open()){
         while(!file.eof()){
             getline(file, tmp, ';');
@@ -60,31 +60,38 @@ int main(int argc, char **argv) {
     auto iterations = args(argc, argv, "iterations", 1000);
     auto method = args(argc, argv, "method", string("hc"));
     auto tabu_size = args(argc, argv, "tabu_size", 100);
-    auto quantity = args(argc, argv, "quantity", 500);
-    auto binSize = args(argc, argv, "binSize", 15);
+    auto quantity = args(argc, argv, "quantity", 10);
+    auto backpackSize = args(argc, argv, "backpackSize", 15);
     auto uniformRealDistributionIsSet = args(argc, argv, "uniformRealDistributionIsSet", false);
     auto showBestOrAll = args(argc, argv, "showBestOrAll", string("best"));
+    auto crossing = args(argc, argv, "crossing", string("random"));
 
     vector<pair<int, int>> data;
 
     if(fname==""){
         cout<<"Enter size and press enter"<<endl;
-        pair<int, int> trashSize;
-        while(cin >> trashSize){
-            data.push_back(trashSize);
+        vector <pair<int, int>> trash;
+        int temp1;
+        int temp2;
+        while(cin >> temp1, temp2){
+            trash.emplace_back(temp1, temp2);
         }
     } else{
         data = loadProblem(fname);
     }
 
     if (method == "hc") {
-        hillClimbing(data, binSize, quantity, iterations);
+        hillClimbing(data, backpackSize, iterations);
     } else if (method == "random") {
-        hillClimbingRandom(data, binSize, quantity, iterations);
-    } else if (method == "tabu") {
-        tabuSearch(data, binSize, quantity, tabu_size, iterations, showBestOrAll);
-    } else if (method == "sa") {
-        simulatedAnnealing(data, binSize, quantity, iterations, uniformRealDistributionIsSet, showBestOrAll);
+        hillClimbingRandom(data, backpackSize, iterations);
+//    } else if (method == "tabu") {
+//        tabuSearch(data, binSize, quantity, tabu_size, iterations, showBestOrAll);
+//    } else if (method == "sa") {
+//        simulatedAnnealing(data, binSize, quantity, iterations, uniformRealDistributionIsSet, showBestOrAll);
+
+    }
+    else if (method == "genetic"){
+        genetic(data, backpackSize, iterations, 10);
     }
 
     return 0;

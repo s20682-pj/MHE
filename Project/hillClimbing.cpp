@@ -5,10 +5,10 @@
 #include <ctime>
 
 using namespace std;
-vector<int> hillClimbing(vector<pair<int, int>> data, int backpackSize, int quantity, int iterations) {
+vector<pair<int,int>> hillClimbing(vector<pair<int, int>> data, int backpackSize, int iterations) {
 
     shuffle(begin(data), end(data), mt19937(random_device()()));
-    int score = knapsack(data, backpackSize, quantity);
+    int score = knapsack(data, backpackSize);
     int bestScore = score;
     int iteration_counter;
 
@@ -17,7 +17,7 @@ vector<int> hillClimbing(vector<pair<int, int>> data, int backpackSize, int quan
     for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
         for (int i = 0; i < data.size(); ++i) {
             swap(data[i], data[i+1]);
-            score = knapsack(data, backpackSize, quantity);
+            score = knapsack(data, backpackSize);
             if (score < bestScore) {
                 bestScore = score;
             }
@@ -27,9 +27,9 @@ vector<int> hillClimbing(vector<pair<int, int>> data, int backpackSize, int quan
 
 }
 
-vector<int> hillClimbingRandom(vector<pair<int, int>> data, int binSize, int quantity, int iterations) {
+vector<pair<int,int>> hillClimbingRandom(vector<pair<int, int>> data, int binSize, int iterations) {
     shuffle(begin(data), end(data), mt19937(random_device()()));
-    int score = knapsack(data, binSize, quantity);
+    int score = knapsack(data, binSize);
     int iteration_counter;
     int newScore;
 
@@ -37,7 +37,7 @@ vector<int> hillClimbingRandom(vector<pair<int, int>> data, int binSize, int qua
         int x = rand() % (end(data) - begin(data));
         for (int j = 0; j < data.size(); ++j) {
             swap(data[x], data[j]);
-            newScore = knapsack(data, binSize, quantity);
+            newScore = knapsack(data, binSize);
             if (newScore < score) {
                 score = newScore;
             }
