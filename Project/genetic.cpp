@@ -46,25 +46,55 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
         fitness.push_back(valueInBackpack);
     }
 
+    //show population
+//    for (int i = 0; i < population.size(); i++) {
+//        for (int j = 0; j < population[i].size(); j++)
+//            cout << population[i][j] << " ";
+//        cout << endl;
+//    }
+
+    //show fitness
 //    for(auto i: fitness){
-//            cout << i << ", ";
-//        }
+//        cout << i << endl;
+//    }
 
     //roulette
     int sumOfFitness = 0;
-    for(int i=0; i<fitness.size(); i++){
-        sumOfFitness += fitness[i];
+    for(int fitnes : fitness){
+        sumOfFitness += fitnes;
     }
 
-    int random = rand() % sumOfFitness;
-    int i = 0;
-    do {
-        random = random - fitness[i];
-        i++;
-    } while (random > 0);
+    vector<int> contestantFitness;
+    vector<bool> contestant;
+    vector<int> parent;
 
-    cout << i << " " << population[i][i] << " " << fitness[i];
-//
-//    //tournament
-//    for()
+    for(int i=0; i < populationSize; i++){
+
+        for(int j=0; j < 2; j++){
+            int random1 = rand() % sumOfFitness;
+            int z = 0;
+            do {
+                random1 = random1 - fitness[z];
+                z++;
+            } while (random1 > 0);
+            contestantFitness.push_back(fitness[z]);
+            contestant.push_back(z);
+        }
+
+
+        if(contestantFitness[1] > contestantFitness[2]){
+            parent.push_back(contestant[1]);
+        }else parent.push_back(contestant[2]);
+
+        vector<vector<bool>> children;
+        
+        for(int l = 0; l < populationSize/2; l++){
+            children.push_back(population[parent[1]][l]);
+        }
+
+
+    }
+
+
+
 }
