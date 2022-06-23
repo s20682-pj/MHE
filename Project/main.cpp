@@ -91,7 +91,7 @@ int main(int argc, char **argv) {
 
     }
     else if (method == "genetic"){
-        genetic(data, backpackSize, iterations, 10);
+        genetic(data, backpackSize, iterations, 4);
     }
 
     return 0;
