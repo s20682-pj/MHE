@@ -66,7 +66,7 @@ int main(int argc, char **argv) {
     auto showBestOrAll = args(argc, argv, "showBestOrAll", string("best"));
     auto crossing = args(argc, argv, "crossing", string("half"));
     auto populationSize = args(argc, argv, "populationSize", 16);
-    auto mutation = args(argc, argv, "mutation", string("random"));
+    auto mutation = args(argc, argv, "mutation", string("first"));
     auto ending = args(argc, argv, "ending", string("best"));
 
     vector<pair<int, int>> data;
@@ -94,7 +94,7 @@ int main(int argc, char **argv) {
 
     }
     else if (method == "genetic"){
-        genetic(data, backpackSize, iterations, populationSize, crossing, mutation, ending);
+        genetic(data, backpackSize, populationSize, crossing, mutation, ending);
     }
 
     return 0;
