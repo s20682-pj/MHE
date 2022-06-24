@@ -108,7 +108,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
     vector<int> contestant;
     vector<vector<bool>> children;
 
-    for(int p=0; p < population.size(); p++){
+    for(int p=0; p < populationSize/2; p++){
 
 
         for(int j=0; j < 4; j++){
@@ -217,7 +217,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
         //show children
         cout << "children" << endl;
         for (auto & i : children) {
-            for (int j = 0; j < i.size(); j++)
+            for (int j = 0; j < data.size(); j++)
                 cout << i[j] << " ";
             cout << endl;
         }
@@ -236,15 +236,15 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
         //show new children
         cout << "new children" << endl;
         for (auto & i : children) {
-            for (int j = 0; j < i.size(); j++)
+            for (int j = 0; j < data.size(); j++)
                 cout << i[j] << " ";
             cout << endl;
-    }
+        }
     }
 
     cout << "final children" << endl;
     for (auto & i : children) {
-        for (int j = 0; j < i.size(); j++)
+        for (int j = 0; j < data.size(); j++)
             cout << i[j] << " ";
         cout << endl;
     }
