@@ -8,13 +8,13 @@ using namespace std;
 
 
 
-vector<vector<bool>> generatePopulation(int populationSize){
+vector<vector<bool>> generatePopulation(int populationSize, int dataSize){
     vector<vector<bool>> population;
     vector<bool> binary;
     bool randomBit;
     srand(time(NULL));
-    for(int i=0; i<pow(2,populationSize); i++) {
-        for (int j = 0; j < populationSize; j++) {
+    for(int i=0; i<populationSize; i++) {
+        for (int j = 0; j < dataSize; j++) {
             randomBit = rand() % 2;
             binary.push_back(randomBit);
         }
@@ -26,7 +26,7 @@ vector<vector<bool>> generatePopulation(int populationSize){
 
 vector<int> fitness(int populationSize, vector<pair<int, int>> data, int backpackSize, vector<vector<bool>> population){
     vector<int> score;
-    for(int k=0; k<pow(2,populationSize);k++){
+    for(int k=0; k < populationSize;k++){
         int sumInBackpack = 0;
         int valueInBackpack = 0;
         for (int i = 0; i < data.size(); ++i) {
@@ -51,7 +51,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
     //generate chromosomes
     shuffle(begin(data), end(data), mt19937(random_device()()));
     vector<vector<bool>> population;
-    population = generatePopulation(populationSize);
+    population = generatePopulation(populationSize, data.size());
 
 
     //show data
@@ -108,15 +108,20 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
     vector<int> contestant;
     vector<vector<bool>> children;
 
-    srand(time(NULL));
-    for(int p=0; p < populationSize*2; p++){
+    for(int p=0; p < population.size(); p++){
+
+
         for(int j=0; j < 4; j++){
             int random1 = rand() % sumOfFitness;
-            int z = 1;
-            do {
+            int z = 0;
+            while(random1 > 0) {
+
                 random1 = random1 - scores[z];
-                z++;
-            } while (random1 > 0 and z < population.size());
+                if(random1 > 0){
+                    z++;
+                }
+
+            }
 
             contestantFitness.push_back(scores[z]);
             contestant.push_back(z);
@@ -172,21 +177,21 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
 
         cout << "parents" << endl;
         for(int i = 0; i < parent.size(); i++){
-            for(int j = 0; j < populationSize; j++){
+            for(int j = 0; j < data.size(); j++){
                 cout << population[parent[i]][j];
             }
             cout << endl;
         }
 
-        int halfPopulation = populationSize/2;
+        int halfData = data.size()/2;
 
 
 
-        for (int j = 0; j < halfPopulation; j++) {
+        for (int j = 0; j < halfData; j++) {
             chromosome = population[parent[0]][j];
             childrentmp.push_back(chromosome);
         }
-        for (int j = halfPopulation; j < populationSize; j++) {
+        for (int j = halfData; j < populationSize; j++) {
             chromosome = population[parent[1]][j];
             childrentmp.push_back(chromosome);
         }
@@ -194,11 +199,11 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
         childrentmp.clear();
 
 
-        for (int j = 0; j < halfPopulation; j++) {
+        for (int j = 0; j < halfData; j++) {
             chromosome = population[parent[1]][j];
             childrentmp.push_back(chromosome);
         }
-        for (int j = halfPopulation; j < populationSize; j++) {
+        for (int j = halfData; j < populationSize; j++) {
             chromosome = population[parent[0]][j];
             childrentmp.push_back(chromosome);
         }
