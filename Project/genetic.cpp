@@ -106,17 +106,17 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
 
     vector<int> contestantFitness;
     vector<int> contestant;
+    vector<vector<bool>> children;
 
-
- //   for(int i=0; i < populationSize; i++){
-
+    srand(time(NULL));
+    for(int p=0; p < populationSize*2; p++){
         for(int j=0; j < 4; j++){
             int random1 = rand() % sumOfFitness;
             int z = 1;
             do {
                 random1 = random1 - scores[z];
                 z++;
-            } while (random1 > 0);
+            } while (random1 > 0 and z < population.size());
 
             contestantFitness.push_back(scores[z]);
             contestant.push_back(z);
@@ -160,7 +160,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
 
 
         //crossing
-        vector<vector<bool>> children;
+
 
 
 //        for(int l = 0; l < populationSize/2; l++){
@@ -202,14 +202,14 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
             chromosome = population[parent[0]][j];
             childrentmp.push_back(chromosome);
         }
-        children.push_back(childrentmp);
+        children.insert(children.begin(), childrentmp);
         childrentmp.clear();
 
 
 
 
 
-    //show children
+        //show children
         cout << "children" << endl;
         for (auto & i : children) {
             for (int j = 0; j < i.size(); j++)
@@ -222,11 +222,36 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
 
 
         //mutation
-        srand(time(NULL));
-        int random4 =  rand() % contestant.size();
+        int random4 = rand() % 1;
+        int random5 =  rand() % populationSize;
+        if(children[random4][random5]){
+            children[random4][random5] = false;
+        }else children[random4][random5] = true;
 
- //   }
+        //show new children
+        cout << "new children" << endl;
+        for (auto & i : children) {
+            for (int j = 0; j < i.size(); j++)
+                cout << i[j] << " ";
+            cout << endl;
+    }
+    }
 
+    cout << "final children" << endl;
+    for (auto & i : children) {
+        for (int j = 0; j < i.size(); j++)
+            cout << i[j] << " ";
+        cout << endl;
+    }
+
+
+
+    vector<int> childrenScores = fitness(populationSize, data, backpackSize, children);
+    //show children fitness
+    cout << "children fitness" << endl;
+    for(auto d: childrenScores){
+        cout << d << endl;
+    }
 
 
 }
