@@ -225,7 +225,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
                     random_device rd;
                     mt19937 gen(rd());
                     uniform_int_distribution<> distrib(0, 1);
-                    uniform_int_distribution<> distrib2(0, populationSize);
+                    uniform_int_distribution<> distrib2(0, data.size());
                     int random4 = distrib(gen);
                     int random5 = distrib2(gen);
                     if (children[random4][random5]) {
@@ -260,10 +260,11 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
             iterations++;
             population = children;
             children.clear();
-            cout << iterations << endl;
+            //cout << iterations << endl;
 
         } while (iterations < generations);
         vector<int> newGeneration = fitness(populationSize, data, backpackSize, population);
+
         //show children fitness
 //    cout << "children fitness" << endl;
 //    for(auto d: newGeneration){
@@ -280,7 +281,6 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
             }
         }
 
-        cout << endl;
         cout << "Wartosc plecaka: " << best << endl;
         //cout << bestIndex << endl;
 
@@ -450,7 +450,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
                     random_device rd;
                     mt19937 gen(rd());
                     uniform_int_distribution<> distrib(0, 1);
-                    uniform_int_distribution<> distrib2(0, populationSize);
+                    uniform_int_distribution<> distrib2(0, data.size());
                     int random4 = distrib(gen);
                     int random5 = distrib2(gen);
                     if (children[random4][random5]) {
@@ -517,7 +517,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
 
 
         } while (bestChild >= bestParent);
-        cout << endl;
+        
         cout << "Wartosc plecaka: " << bestParent << endl;
         //cout << bestIndex << endl;
 
