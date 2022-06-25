@@ -60,10 +60,8 @@ int main(int argc, char **argv) {
     auto iterations = args(argc, argv, "iterations", 1000);
     auto method = args(argc, argv, "method", string("hc"));
     auto tabu_size = args(argc, argv, "tabu_size", 100);
-    auto quantity = args(argc, argv, "quantity", 10);
     auto backpackSize = args(argc, argv, "backpackSize", 30);
     auto uniformRealDistributionIsSet = args(argc, argv, "uniformRealDistributionIsSet", true);
-    auto showBestOrAll = args(argc, argv, "showBestOrAll", string("best"));
     auto crossing = args(argc, argv, "crossing", string("half"));
     auto populationSize = args(argc, argv, "populationSize", 16);
     auto mutation = args(argc, argv, "mutation", string("random"));
