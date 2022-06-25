@@ -34,7 +34,7 @@ Podczas uruchamiania możnna wywołać następujące argumenty [do których algo
 
 ?-showAllOrBest - pokaż wszystkie wyniki lub najlepszą kombinację (best/all)? - /do sprawdzenia/
 
--crossing - metoda crossowania rodziców w algorytmie genetycznym (half dla dzielenia po połowie, ) [5]
+-crossing - metoda crossowania rodziców w algorytmie genetycznym (half dla dzielenia po połowie, w przeciwnym wypadku zostanie wykonane crossowanie biorąc na zmianę po jednym chromsomie od każdego rodzica) [5]
 
 -mutation - rodzaj mutowania utworzonych dzieci (random - losowy chromosom mutuje, w innym wypadku losowemu dziecku zostanie zmieniony pierwszy bit) [5]
 
