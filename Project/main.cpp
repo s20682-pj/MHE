@@ -61,13 +61,14 @@ int main(int argc, char **argv) {
     auto method = args(argc, argv, "method", string("hc"));
     auto tabu_size = args(argc, argv, "tabu_size", 100);
     auto quantity = args(argc, argv, "quantity", 10);
-    auto backpackSize = args(argc, argv, "backpackSize", 40);
+    auto backpackSize = args(argc, argv, "backpackSize", 30);
     auto uniformRealDistributionIsSet = args(argc, argv, "uniformRealDistributionIsSet", false);
     auto showBestOrAll = args(argc, argv, "showBestOrAll", string("best"));
     auto crossing = args(argc, argv, "crossing", string("half"));
     auto populationSize = args(argc, argv, "populationSize", 16);
     auto mutation = args(argc, argv, "mutation", string("first"));
-    auto ending = args(argc, argv, "ending", string("best"));
+    auto ending = args(argc, argv, "ending", string("generations"));
+    auto generations = args(argc, argv, "generations", 2);
 
     vector<pair<int, int>> data;
 
@@ -94,7 +95,7 @@ int main(int argc, char **argv) {
 
     }
     else if (method == "genetic"){
-        genetic(data, backpackSize, populationSize, crossing, mutation, ending);
+        genetic(data, backpackSize, populationSize, crossing, mutation, ending, generations);
     }
 
     return 0;
