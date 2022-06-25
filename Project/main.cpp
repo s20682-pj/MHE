@@ -62,7 +62,7 @@ int main(int argc, char **argv) {
     auto tabu_size = args(argc, argv, "tabu_size", 100);
     auto quantity = args(argc, argv, "quantity", 10);
     auto backpackSize = args(argc, argv, "backpackSize", 30);
-    auto uniformRealDistributionIsSet = args(argc, argv, "uniformRealDistributionIsSet", false);
+    auto uniformRealDistributionIsSet = args(argc, argv, "uniformRealDistributionIsSet", true);
     auto showBestOrAll = args(argc, argv, "showBestOrAll", string("best"));
     auto crossing = args(argc, argv, "crossing", string("half"));
     auto populationSize = args(argc, argv, "populationSize", 16);
@@ -88,11 +88,10 @@ int main(int argc, char **argv) {
         hillClimbing(data, backpackSize, iterations);
     } else if (method == "random") {
         hillClimbingRandom(data, backpackSize, iterations);
-//    } else if (method == "tabu") {
-//        tabuSearch(data, binSize, quantity, tabu_size, iterations, showBestOrAll);
-//    } else if (method == "sa") {
-//        simulatedAnnealing(data, binSize, quantity, iterations, uniformRealDistributionIsSet, showBestOrAll);
-
+    } else if (method == "tabu") {
+        tabuSearch(data, backpackSize, tabu_size, iterations);
+    } else if (method == "sa") {
+        simulatedAnnealing(data, backpackSize, iterations, uniformRealDistributionIsSet);
     }
     else if (method == "genetic"){
         genetic(data, backpackSize, populationSize, crossing, mutation, ending, generations);

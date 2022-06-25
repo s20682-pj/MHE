@@ -12,18 +12,24 @@ vector<pair<int,int>> hillClimbing(vector<pair<int, int>> data, int backpackSize
     int bestScore = score;
     int iteration_counter;
 
-    srand((unsigned) time(NULL));
-
     for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
         for (int i = 0; i < data.size(); ++i) {
             swap(data[i], data[i+1]);
             score = knapsack(data, backpackSize);
             if (score < bestScore) {
                 bestScore = score;
-            }
+            }else swap(data[i+1], data[i]);
         }
     }
-    cout << "Value in the backpack: " << bestScore << endl << "Iterations: " << iteration_counter << endl;
+    cout << "Wartosc plecaka: " << bestScore << endl;
+
+    int tmp=0;
+
+    cout << "Przedmioty: " << endl;
+    for(int j = 0; tmp < bestScore; j++){
+        tmp = tmp + data[j].second;
+        cout << data[j].first << " " << data[j].second << endl;
+    }
 
 }
 
@@ -40,7 +46,15 @@ vector<pair<int,int>> hillClimbingRandom(vector<pair<int, int>> data, int binSiz
             newScore = knapsack(data, binSize);
             if (newScore < score) {
                 score = newScore;
-            }
+            }else swap(data[j], data[x]);
     }}
-    cout << "Value in the backpack: " << score << endl << "Iterations: " << iteration_counter << endl;
+    cout << "Wartosc plecaka: " << score << endl;
+
+    int tmp=0;
+
+    cout << "Przedmioty: " << endl;
+    for(int j = 0; tmp < score; j++){
+        tmp = tmp + data[j].second;
+        cout << data[j].first << " " << data[j].second << endl;
+    }
 }
