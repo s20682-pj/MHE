@@ -2,7 +2,6 @@
 #include <random>
 #include <algorithm>
 #include <iostream>
-#include <ctime>
 
 using namespace std;
 vector<pair<int,int>> hillClimbing(vector<pair<int, int>> data, int backpackSize, int iterations) {

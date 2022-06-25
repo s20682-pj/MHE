@@ -52,7 +52,6 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
     vector<vector<bool>> population;
     population = generatePopulation(populationSize, data.size());
 
-
     //show data
 //    cout << "dane" << endl;
 //    for(int i = 0; i < data.size(); i++)
@@ -304,7 +303,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
         int bestParent;
         int bestChild;
         int bestIndexParent;
-        int bestIndexChild;
+
         do {
             //scores
             vector<int> scores = fitness(populationSize, data, backpackSize, population);
@@ -369,7 +368,6 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
                     contestantFitness.erase(
                             find(contestantFitness.begin(), contestantFitness.end(), contestantFitness[random3]));
                 }
-
 
                 //show winners
 //                cout << "winners" << endl;
@@ -447,7 +445,6 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
                 childrentmp.clear();
                 parent.clear();
 
-
                 //mutation
                 if (mutation == "random") {
                     random_device rd;
@@ -476,7 +473,6 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
 //            cout << endl;
 //        }
 
-
                 //show new children
 //                cout << "new children" << endl;
 //                for (auto & i : children) {
@@ -487,6 +483,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
             }
 
             vector<int> newGeneration = fitness(populationSize, data, backpackSize, children);
+
             //show children fitness
 //    cout << "children fitness" << endl;
 //    for(auto d: newGeneration){
@@ -504,6 +501,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
             }
 
             for (int i = 0; i < populationSize; i++) {
+                int bestIndexChild = 0;
                 if (newGeneration[i] > bestChild) {
                     bestChild = newGeneration[i];
                     bestIndexChild = i;
@@ -511,16 +509,6 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
             }
 
             //cout << bestParent << " " << bestChild << endl;
-
-//            cout << endl;
-//            cout << "Wartosc plecaka: " << best << endl;
-//            //cout << bestIndex << endl;
-//
-//            for(int i = 0; i < population.size(); i++){
-//                if(population[bestIndex][i]){
-//                    cout << "Rozmiar " <<  data[i].first << " Wartosc " << data[i].second << endl;
-//                }
-//            }
 
             if (bestParent <= bestChild) {
                 population = children;
