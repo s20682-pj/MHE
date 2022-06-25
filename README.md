@@ -36,7 +36,7 @@ Podczas uruchamiania możnna wywołać następujące argumenty [do których algo
 
 -crossing - metoda crossowania rodziców w algorytmie genetycznym (half dla dzielenia po połowie, ) [5]
 
--mutation - rodzaj mutowania utworzonych dzieci (random - losowy chromosom mutuje, ) [5]
+-mutation - rodzaj mutowania utworzonych dzieci (random - losowy chromosom mutuje, w innym wypadku losowemu dziecku zostanie zmieniony pierwszy bit) [5]
 
 -ending - warunek do zakończenia algorytmu genetycznego (best - czy poprzednie pokolenie miało lepszy wynik niż nowe, ) [5]
 
