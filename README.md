@@ -38,7 +38,9 @@ Podczas uruchamiania możnna wywołać następujące argumenty [do których algo
 
 -mutation - rodzaj mutowania utworzonych dzieci (random - losowy chromosom mutuje, w innym wypadku losowemu dziecku zostanie zmieniony pierwszy bit) [5]
 
--ending - warunek do zakończenia algorytmu genetycznego (best - czy poprzednie pokolenie miało lepszy wynik niż nowe, ) [5]
+-ending - warunek do zakończenia algorytmu genetycznego (best - czy poprzednie pokolenie miało lepszy wynik niż nowe, generations - algorytm stworzy x pokoleń i wybierze najlepszy wynik z ostatniego) [5]
+
+-generations - po ilu generacjach ma zostać zakończony algorytm, jeśli wybrano warunek zakończenia generations (int) [5]
 
 Dołączony zostaje również skrypt, który ukazuje, jak szybko dany algorytm odnajduje najlepsze rozwiązanie, dzięki czemu możemy określić, która metoda jest najlepsza dla danego problemu.
 
