@@ -26,15 +26,13 @@ Podczas uruchamiania możnna wywołać następujące argumenty [do których algo
 
 -tabu_size - rozmiar naszego tabu (int) [3]
 
-?-quantity - ile przedmiotów ma zostać sprawdzonych (int)? - /do sprawdzenia/
-
 -backpackSize - rozmiar naszego plecaka (int) [1-5]
 
 -uniformRealDistributionIsSet - wartość dla symulowanego wyżarzania, która definiuje rodzaj rozkładu (true/false) [4]
 
-?-showAllOrBest - pokaż wszystkie wyniki lub najlepszą kombinację (best/all)? - /do sprawdzenia/
-
 -crossing - metoda crossowania rodziców w algorytmie genetycznym (half dla dzielenia po połowie, w przeciwnym wypadku zostanie wykonane crossowanie biorąc na zmianę po jednym chromsomie od każdego rodzica) [5]
+
+-populationSize - ile osobników ma być w populacji [5]
 
 -mutation - rodzaj mutowania utworzonych dzieci (random - losowy chromosom mutuje, w innym wypadku losowemu dziecku zostanie zmieniony pierwszy bit) [5]
 
