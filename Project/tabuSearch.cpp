@@ -55,5 +55,5 @@ vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, 
         tmp = tmp + bestSolution[j].second;
         cout << bestSolution[j].first << " " << bestSolution[j].second << endl;
     }
-
+    return bestSolution;
 }

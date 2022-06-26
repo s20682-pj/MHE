@@ -49,5 +49,5 @@ vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpa
         tmp = tmp + bestSolution[j].second;
         cout << bestSolution[j].first << " " << bestSolution[j].second << endl;
     }
-
+    return bestSolution;
 }

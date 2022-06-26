@@ -1,19 +1,19 @@
 #include "data.h"
 #include <random>
 #include <algorithm>
-#include <ctime>
-#include <cstdlib>
 
 using namespace std;
 
-vector<vector<bool>> generatePopulation(int populationSize, int dataSize){
+vector<vector<bool>> generatePopulation(int populationSize, int dataSize) {
     vector<vector<bool>> population;
     vector<bool> binary;
     bool randomBit;
-    srand(time(NULL));
-    for(int i=0; i<populationSize; i++) {
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distrib(0, 1);
+    for (int i = 0; i < populationSize; i++) {
         for (int j = 0; j < dataSize; j++) {
-            randomBit = rand() % 2;
+            randomBit = distrib(gen);
             binary.push_back(randomBit);
         }
         population.push_back(binary);
@@ -22,8 +22,8 @@ vector<vector<bool>> generatePopulation(int populationSize, int dataSize){
     return population;
 }
 
-vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int populationSize, string crossing,
-                              string mutation, string ending, int generations) {
+vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int populationSize, const string &crossing,
+                             const string &mutation, const string &ending, int generations) {
     //generate chromosomes
     shuffle(begin(data), end(data), mt19937(random_device()()));
     vector<vector<bool>> population;
@@ -228,7 +228,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
             }
 
             vector<int> newGeneration = fitness(populationSize, data, backpackSize, children);
-            
+
             bestParent = scores[0];
             bestChild = newGeneration[0];
 
@@ -264,4 +264,5 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
             }
         }
     }
+    return population;
 }

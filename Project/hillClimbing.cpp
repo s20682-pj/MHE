@@ -4,39 +4,48 @@
 #include <iostream>
 
 using namespace std;
-vector<pair<int,int>> hillClimbing(vector<pair<int, int>> data, int backpackSize, int iterations) {
+
+vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSize, int iterations, int ifScript) {
 
     shuffle(begin(data), end(data), mt19937(random_device()()));
     int score = knapsack(data, backpackSize);
     int bestScore = score;
     int iteration_counter;
+    vector<pair<int, int>> bestSolution = data;
 
     for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
+        int x = rand() % (end(data) - begin(data));
         for (int i = 0; i < data.size(); ++i) {
-            swap(data[i], data[i+1]);
+            swap(data[x], data[i]);
             score = knapsack(data, backpackSize);
-            if (score < bestScore) {
+            if (score > bestScore) {
                 bestScore = score;
-            }else swap(data[i+1], data[i]);
+                bestSolution = data;
+            } else swap(data[i + 1], data[i]);
         }
+        if (ifScript) cout << iteration_counter << " " << score << " " << bestScore << endl;
     }
-    cout << "Wartosc plecaka: " << bestScore << endl;
+    if (ifScript != 1) {
+        cout << "Wartosc plecaka: " << bestScore << endl;
 
-    int tmp=0;
+        int tmp = 0;
 
-    cout << "Przedmioty: " << endl;
-    for(int j = 0; tmp < bestScore; j++){
-        tmp = tmp + data[j].second;
-        cout << data[j].first << " " << data[j].second << endl;
+        cout << "Przedmioty: " << endl;
+        for (int j = 0; tmp < bestScore; j++) {
+            tmp = tmp + data[j].second;
+            cout << data[j].first << " " << data[j].second << endl;
+        }
+
     }
-
+    return bestSolution;
 }
 
-vector<pair<int,int>> hillClimbingRandom(vector<pair<int, int>> data, int binSize, int iterations) {
+vector<pair<int, int>> hillClimbingRandom(vector<pair<int, int>> data, int binSize, int iterations) {
     shuffle(begin(data), end(data), mt19937(random_device()()));
     int score = knapsack(data, binSize);
     int iteration_counter;
     int newScore;
+    vector<pair<int, int>> bestSolution = data;
 
     for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
         int x = rand() % (end(data) - begin(data));
@@ -45,15 +54,18 @@ vector<pair<int,int>> hillClimbingRandom(vector<pair<int, int>> data, int binSiz
             newScore = knapsack(data, binSize);
             if (newScore < score) {
                 score = newScore;
-            }else swap(data[j], data[x]);
-    }}
+                bestSolution = data;
+            } else swap(data[j], data[x]);
+        }
+    }
     cout << "Wartosc plecaka: " << score << endl;
 
-    int tmp=0;
+    int tmp = 0;
 
     cout << "Przedmioty: " << endl;
-    for(int j = 0; tmp < score; j++){
+    for (int j = 0; tmp < score; j++) {
         tmp = tmp + data[j].second;
         cout << data[j].first << " " << data[j].second << endl;
     }
+    return bestSolution;
 }

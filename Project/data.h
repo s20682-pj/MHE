@@ -8,11 +8,11 @@
 using namespace std;
 
 int knapsack(vector<pair<int, int>> data, int backpackSize);
-vector<pair<int,int>> hillClimbing(vector<pair<int, int>> data, int backpackSize, int iterations);
+vector<pair<int,int>> hillClimbing(vector<pair<int, int>> data, int backpackSize, int iterations, int ifScript);
 vector<pair<int,int>> hillClimbingRandom(vector<pair<int, int>> data, int backpackSize, int iterations);
 vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int binSize, int tabuSize, int iterations);
 vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpackSize, int iterations, bool uniformRealDistributionIsSet);
-vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int populationSize, string crossing, string mutation, string ending, int generations);
+vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int populationSize, const string& crossing, const string& mutation, const string& ending, int generations);
 vector<vector<bool>> genetic_mutation(vector<vector<bool>> children, string mutation, vector<pair<int, int>> data);
 vector<vector<bool>> genetic_crossing(string crossing, vector<int> parent, vector<vector<bool>> population, vector<vector<bool>> children,
                                       vector<pair<int, int>> data);

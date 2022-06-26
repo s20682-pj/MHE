@@ -55,7 +55,7 @@ auto args = [](int argc, char** argv, string name, auto default_value) -> declty
 };
 
 int main(int argc, char **argv) {
-
+cout << "hello world";
     auto fname = args(argc, argv, "fname", string(""));
     auto iterations = args(argc, argv, "iterations", 1000);
     auto method = args(argc, argv, "method", string("hc"));
@@ -65,8 +65,9 @@ int main(int argc, char **argv) {
     auto crossing = args(argc, argv, "crossing", string("half"));
     auto populationSize = args(argc, argv, "populationSize", 16);
     auto mutation = args(argc, argv, "mutation", string("random"));
-    auto ending = args(argc, argv, "ending", string("generations"));
+    auto ending = args(argc, argv, "ending", string("best"));
     auto generations = args(argc, argv, "generations", 1);
+    auto ifScript = args(argc, argv, "script", 0);
 
     vector<pair<int, int>> data;
 
@@ -83,7 +84,7 @@ int main(int argc, char **argv) {
     }
 
     if (method == "hc") {
-        hillClimbing(data, backpackSize, iterations);
+        hillClimbing(data, backpackSize, iterations, ifScript);
     } else if (method == "random") {
         hillClimbingRandom(data, backpackSize, iterations);
     } else if (method == "tabu") {
