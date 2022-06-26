@@ -22,29 +22,6 @@ vector<vector<bool>> generatePopulation(int populationSize, int dataSize){
     return population;
 }
 
-vector<int> fitness(int populationSize, vector<pair<int, int>> data, int backpackSize, vector<vector<bool>> population){
-    vector<int> score;
-    for(int k=0; k < populationSize; k++){
-        int sumInBackpack = 0;
-        int valueInBackpack = 0;
-        for (int i = 0; i < data.size(); ++i) {
-            if(population[k][i] and i < populationSize){
-                int size = data[i].first;
-                int value = data[i].second;
-                if (sumInBackpack + size <= backpackSize){
-                    sumInBackpack += size;
-                    valueInBackpack += value;
-                }else if (sumInBackpack + size > backpackSize) {
-                    valueInBackpack = 0;
-                    break;
-                }
-            }
-        }
-        score.push_back(valueInBackpack);
-    }
-    return score;
-}
-
 vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int populationSize, string crossing,
                               string mutation, string ending, int generations) {
     //generate chromosomes
@@ -89,6 +66,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
             for (int p = 0; p < populationSize / 2; p++) {
                 vector<int> contestantFitness;
                 vector<int> contestant;
+                vector<int> parent;
 
                 //roulette
                 for (int j = 0; j < 4; j++) {
@@ -117,42 +95,16 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
 //                    cout << d << endl;
 //                }
 
-                vector<int> parent;
-                int random2 = 0;
-                int random3 = 0;
-
                 //tournament
-                for (int i = 0; i < 2; i++) {
-                    random_device rd;
-                    mt19937 gen(rd());
-                    uniform_int_distribution<> distrib(0, contestant.size() - 1);
-                    random2 = distrib(gen);
-                    random3 = distrib(gen);
-                    while (random2 == random3) {
-                        random3 = distrib(gen);
-                    }
-                    if (contestantFitness[random2] >= contestantFitness[random3]) {
-                        parent.push_back(contestant[random2]);
-                    } else parent.push_back(contestant[random3]);
-                    contestant.erase(find(contestant.begin(), contestant.end(), contestant[random2]));
-                    contestant.erase(find(contestant.begin(), contestant.end(), contestant[random3]));
-                    contestantFitness.erase(
-                            find(contestantFitness.begin(), contestantFitness.end(), contestantFitness[random2]));
-                    contestantFitness.erase(
-                            find(contestantFitness.begin(), contestantFitness.end(), contestantFitness[random3]));
-                }
-
+                parent = genetic_tournament(contestant, contestantFitness, parent);
 
                 //show winners
 //                cout << "winners" << endl;
 //                for(auto d: parent){
 //                    cout << d << endl;
 //                }
-
-                bool chromosome;
-                vector<bool> childrentmp;
-
-//        cout << "parents" << endl;
+//
+//                cout << "parents" << endl;
 //                for(int i : parent){
 //                    for(int j = 0; j < data.size(); j++){
 //                        cout << population[i][j] << " ";
@@ -161,50 +113,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
 //                }
 
                 //crossing
-                int halfData = data.size() / 2;
-                if (crossing == "half") {
-                    for (int j = 0; j < halfData; j++) {
-                        chromosome = population[parent[0]][j];
-                        childrentmp.push_back(chromosome);
-                    }
-                    for (int j = halfData; j < data.size(); j++) {
-                        chromosome = population[parent[1]][j];
-                        childrentmp.push_back(chromosome);
-                    }
-                    children.insert(children.begin(), childrentmp);
-                    childrentmp.clear();
-
-                    for (int j = 0; j < halfData; j++) {
-                        chromosome = population[parent[1]][j];
-                        childrentmp.push_back(chromosome);
-                    }
-                    for (int j = halfData; j < data.size(); j++) {
-                        chromosome = population[parent[0]][j];
-                        childrentmp.push_back(chromosome);
-                    }
-                    children.insert(children.begin(), childrentmp);
-                    childrentmp.clear();
-                } else {
-                    for (int i = 0; i < halfData; i++) {
-                        chromosome = population[parent[0]][i];
-                        childrentmp.push_back(chromosome);
-                        i++;
-                        chromosome = population[parent[1]][i];
-                        childrentmp.push_back(chromosome);
-                    }
-                    children.insert(children.begin(), childrentmp);
-                    childrentmp.clear();
-                    for (int i = halfData; i < data.size(); i++) {
-                        chromosome = population[parent[1]][i];
-                        childrentmp.push_back(chromosome);
-                        i++;
-                        chromosome = population[parent[0]][i];
-                        childrentmp.push_back(chromosome);
-                    }
-                    children.insert(children.begin(), childrentmp);
-                    childrentmp.clear();
-
-                }
+                children = genetic_crossing(crossing, parent, population, children, data);
 
                 //show children
 //                cout << "children" << endl;
@@ -216,38 +125,9 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
 
                 contestant.clear();
                 contestantFitness.clear();
-                childrentmp.clear();
-                parent.clear();
-
 
                 //mutation
-                if (mutation == "random") {
-                    random_device rd;
-                    mt19937 gen(rd());
-                    uniform_int_distribution<> distrib(0, 1);
-                    uniform_int_distribution<> distrib2(0, data.size());
-                    int random4 = distrib(gen);
-                    int random5 = distrib2(gen);
-                    if (children[random4][random5]) {
-                        children[random4][random5] = false;
-                    } else children[random4][random5] = true;
-                } else {
-                    random_device rd;
-                    mt19937 gen(rd());
-                    uniform_int_distribution<> distrib(0, 1);
-                    int random4 = distrib(gen);
-                    if (children[random4][0]) {
-                        children[random4][0] = false;
-                    } else children[random4][0] = true;
-                }
-
-//        cout << "children" << endl;
-//        for (auto & i : children) {
-//            for (int j = 0; j < data.size(); j++)
-//                cout << i[j] << " ";
-//            cout << endl;
-//        }
-
+                children = genetic_mutation(children, mutation, data);
 
                 //show new children
 //                cout << "new children" << endl;
@@ -298,11 +178,11 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
 //        cout << endl;
 //    }
 
-
     if (ending == "best") {
         int bestParent;
         int bestChild;
         int bestIndexParent;
+        vector<int> parent;
 
         do {
             //scores
@@ -334,162 +214,21 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
                     contestant.push_back(z);
                 }
 
-//                cout << "contestantFitness" << endl;
-//                for(auto c: contestantFitness){
-//                    cout << c << endl;
-//                }
-//
-//                cout << "contestant" << endl;
-//                for(auto d: contestant){
-//                    cout << d << endl;
-//                }
-
-                vector<int> parent;
-                int random2 = 0;
-                int random3 = 0;
-
                 //tournament
-                for (int i = 0; i < 2; i++) {
-                    random_device rd;
-                    mt19937 gen(rd());
-                    uniform_int_distribution<> distrib(0, contestant.size() - 1);
-                    random2 = distrib(gen);
-                    random3 = distrib(gen);
-                    while (random2 == random3) {
-                        random3 = distrib(gen);
-                    }
-                    if (contestantFitness[random2] >= contestantFitness[random3]) {
-                        parent.push_back(contestant[random2]);
-                    } else parent.push_back(contestant[random3]);
-                    contestant.erase(find(contestant.begin(), contestant.end(), contestant[random2]));
-                    contestant.erase(find(contestant.begin(), contestant.end(), contestant[random3]));
-                    contestantFitness.erase(
-                            find(contestantFitness.begin(), contestantFitness.end(), contestantFitness[random2]));
-                    contestantFitness.erase(
-                            find(contestantFitness.begin(), contestantFitness.end(), contestantFitness[random3]));
-                }
-
-                //show winners
-//                cout << "winners" << endl;
-//                for(auto d: parent){
-//                    cout << d << endl;
-//                }
-
-                bool chromosome;
-                vector<bool> childrentmp;
-
-//        cout << "parents" << endl;
-//                for(int i : parent){
-//                    for(int j = 0; j < data.size(); j++){
-//                        cout << population[i][j] << " ";
-//                    }
-//                    cout << endl;
-//                }
+                parent = genetic_tournament(contestant, contestantFitness, parent);
 
                 //crossing
-                int halfData = data.size() / 2;
-                if (crossing == "half") {
-                    for (int j = 0; j < halfData; j++) {
-                        chromosome = population[parent[0]][j];
-                        childrentmp.push_back(chromosome);
-                    }
-                    for (int j = halfData; j < data.size(); j++) {
-                        chromosome = population[parent[1]][j];
-                        childrentmp.push_back(chromosome);
-                    }
-                    children.insert(children.begin(), childrentmp);
-                    childrentmp.clear();
-
-                    for (int j = 0; j < halfData; j++) {
-                        chromosome = population[parent[1]][j];
-                        childrentmp.push_back(chromosome);
-                    }
-                    for (int j = halfData; j < data.size(); j++) {
-                        chromosome = population[parent[0]][j];
-                        childrentmp.push_back(chromosome);
-                    }
-                    children.insert(children.begin(), childrentmp);
-                    childrentmp.clear();
-                } else {
-                    for (int i = 0; i < halfData; i++) {
-                        chromosome = population[parent[0]][i];
-                        childrentmp.push_back(chromosome);
-                        i++;
-                        chromosome = population[parent[1]][i];
-                        childrentmp.push_back(chromosome);
-                    }
-                    children.insert(children.begin(), childrentmp);
-                    childrentmp.clear();
-                    for (int i = halfData; i < data.size(); i++) {
-                        chromosome = population[parent[1]][i];
-                        childrentmp.push_back(chromosome);
-                        i++;
-                        chromosome = population[parent[0]][i];
-                        childrentmp.push_back(chromosome);
-                    }
-                    children.insert(children.begin(), childrentmp);
-                    childrentmp.clear();
-
-                }
-
-                //show children
-//                cout << "children" << endl;
-//                for (auto & i : children) {
-//                    for (int j = 0; j < data.size(); j++)
-//                        cout << i[j] << " ";
-//                    cout << endl;
-//                }
+                children = genetic_crossing(crossing, parent, population, children, data);
 
                 contestant.clear();
                 contestantFitness.clear();
-                childrentmp.clear();
-                parent.clear();
 
                 //mutation
-                if (mutation == "random") {
-                    random_device rd;
-                    mt19937 gen(rd());
-                    uniform_int_distribution<> distrib(0, 1);
-                    uniform_int_distribution<> distrib2(0, data.size());
-                    int random4 = distrib(gen);
-                    int random5 = distrib2(gen);
-                    if (children[random4][random5]) {
-                        children[random4][random5] = false;
-                    } else children[random4][random5] = true;
-                } else {
-                    random_device rd;
-                    mt19937 gen(rd());
-                    uniform_int_distribution<> distrib(0, 1);
-                    int random4 = distrib(gen);
-                    if (children[random4][0]) {
-                        children[random4][0] = false;
-                    } else children[random4][0] = true;
-                }
-
-//        cout << "children" << endl;
-//        for (auto & i : children) {
-//            for (int j = 0; j < data.size(); j++)
-//                cout << i[j] << " ";
-//            cout << endl;
-//        }
-
-                //show new children
-//                cout << "new children" << endl;
-//                for (auto & i : children) {
-//                    for (int j = 0; j < data.size(); j++)
-//                        cout << i[j] << " ";
-//                    cout << endl;
-//                }
+                children = genetic_mutation(children, mutation, data);
             }
 
             vector<int> newGeneration = fitness(populationSize, data, backpackSize, children);
-
-            //show children fitness
-//    cout << "children fitness" << endl;
-//    for(auto d: newGeneration){
-//        cout << d << endl;
-//    }
-
+            
             bestParent = scores[0];
             bestChild = newGeneration[0];
 
@@ -501,10 +240,8 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
             }
 
             for (int i = 0; i < populationSize; i++) {
-                int bestIndexChild = 0;
                 if (newGeneration[i] > bestChild) {
                     bestChild = newGeneration[i];
-                    bestIndexChild = i;
                 }
             }
 
@@ -517,7 +254,7 @@ vector<pair<int,int>> genetic(vector<pair<int, int>> data, int backpackSize, int
 
 
         } while (bestChild >= bestParent);
-        
+
         cout << "Wartosc plecaka: " << bestParent << endl;
         //cout << bestIndex << endl;
 

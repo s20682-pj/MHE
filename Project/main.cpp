@@ -65,8 +65,8 @@ int main(int argc, char **argv) {
     auto crossing = args(argc, argv, "crossing", string("half"));
     auto populationSize = args(argc, argv, "populationSize", 16);
     auto mutation = args(argc, argv, "mutation", string("random"));
-    auto ending = args(argc, argv, "ending", string("best"));
-    auto generations = args(argc, argv, "generations", 2);
+    auto ending = args(argc, argv, "ending", string("generations"));
+    auto generations = args(argc, argv, "generations", 1);
 
     vector<pair<int, int>> data;
 
