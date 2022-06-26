@@ -30,13 +30,13 @@ Podczas uruchamiania możnna wywołać następujące argumenty [do których algo
 
 -uniformRealDistributionIsSet - wartość dla symulowanego wyżarzania, która definiuje rodzaj rozkładu (true/false) [4]
 
--crossing - metoda crossowania rodziców w algorytmie genetycznym (half dla dzielenia po połowie, w przeciwnym wypadku zostanie wykonane crossowanie biorąc na zmianę po jednym chromsomie od każdego rodzica) [5]
+-crossing - metoda crossowania rodziców w algorytmie genetycznym (half dla dzielenia w losowo wybranym miejscu, w przeciwnym wypadku zostanie wykonane crossowanie biorąc na zmianę po jednym chromsomie od każdego rodzica) [5]
 
 -populationSize - ile osobników ma być w populacji [5]
 
 -mutation - rodzaj mutowania utworzonych dzieci (random - losowy chromosom mutuje, w innym wypadku losowemu dziecku zostanie zmieniony pierwszy bit) [5]
 
--ending - warunek do zakończenia algorytmu genetycznego (best - czy poprzednie pokolenie miało lepszy wynik niż nowe, generations - algorytm stworzy x pokoleń i wybierze najlepszy wynik z ostatniego) [5]
+-ending - warunek do zakończenia algorytmu genetycznego (best - algorytm zakończy się, jeżeli następne pokolenie nie osiągnie lepszego wyniku, generations - algorytm stworzy x pokoleń i wybierze najlepszy wynik z ostatniego) [5]
 
 -generations - po ilu generacjach ma zostać zakończony algorytm, jeśli wybrano warunek zakończenia generations (int) [5]
 
