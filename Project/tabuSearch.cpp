@@ -51,7 +51,7 @@ vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, 
     clock_t finish = clock();
     if(howLong){
         double elapsed = double(finish - start)/CLOCKS_PER_SEC;
-        cout << elapsed;
+        cout  << "Tabu" << " " << elapsed << endl;
     }
 
     if (ifScript != 1 and howLong !=1) {

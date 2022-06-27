@@ -181,7 +181,7 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
         clock_t finish = clock();
         if(howLong){
             double elapsed = double(finish - start)/CLOCKS_PER_SEC;
-            cout << elapsed;
+            cout  << "GeneticGenerations" << " " << elapsed << endl;
         }
 
         if (ifScript != 1 and howLong != 1){
@@ -284,7 +284,7 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
         clock_t finish = clock();
         if(howLong){
             double elapsed = double(finish - start)/CLOCKS_PER_SEC;
-            cout << elapsed;
+            cout  << "GeneticBest" << " " << elapsed << endl;
         }
 
         //cout << bestIndex << endl;
