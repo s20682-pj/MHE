@@ -3,12 +3,13 @@
 #include <algorithm>
 #include <iostream>
 #include <ctime>
+#include <cstdio>
 
 using namespace std;
 
 vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSize, int iterations, int ifScript, int howLong) {
-    struct timeval start, finish;
-    mingw_gettimeofday(&start, 0);
+    time_t start, finish;
+    time(&start);
 
     shuffle(begin(data), end(data), mt19937(random_device()()));
     int score = knapsack(data, backpackSize);
@@ -29,11 +30,9 @@ vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSiz
         if (ifScript) cout << iteration_counter << " " << bestScore << endl;
     }
 
-    mingw_gettimeofday(&finish, 0);
+    time(&finish);
     if(howLong){
-        long seconds = finish.tv_sec - start.tv_sec;
-        long microseconds = finish.tv_usec - start.tv_usec;
-        double elapsed = seconds + microseconds*1e-6;
+        time_t elapsed = finish - start;
         cout << elapsed;
     }
 
@@ -53,8 +52,8 @@ vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSiz
 }
 
 vector<pair<int, int>> hillClimbingRandom(vector<pair<int, int>> data, int binSize, int iterations, int ifScript, int howLong) {
-    struct timeval start, finish;
-    mingw_gettimeofday(&start, 0);
+    time_t start, finish;
+    time(&start);
 
     shuffle(begin(data), end(data), mt19937(random_device()()));
     int score = knapsack(data, binSize);
@@ -74,11 +73,9 @@ vector<pair<int, int>> hillClimbingRandom(vector<pair<int, int>> data, int binSi
         }
         if (ifScript) cout << iteration_counter << " " << score << endl;
     }
-    mingw_gettimeofday(&finish, 0);
+    time(&finish);
     if(howLong){
-        long seconds = finish.tv_sec - start.tv_sec;
-        long microseconds = finish.tv_usec - start.tv_usec;
-        double elapsed = seconds + microseconds*1e-6;
+        time_t elapsed = finish - start;
         cout << elapsed;
     }
 

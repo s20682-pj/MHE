@@ -1,6 +1,8 @@
 #include "data.h"
 #include <random>
 #include <algorithm>
+#include <ctime>
+#include <cstdio>
 
 using namespace std;
 
@@ -24,8 +26,8 @@ vector<vector<bool>> generatePopulation(int populationSize, int dataSize) {
 
 vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int populationSize, const string &crossing,
                              const string &mutation, const string &ending, int generations, int ifScript, int howLong) {
-    struct timeval start, finish;
-    mingw_gettimeofday(&start, 0);
+    time_t start, finish;
+    time(&start);
 
     //generate chromosomes
     shuffle(begin(data), end(data), mt19937(random_device()()));
@@ -178,11 +180,9 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
             }
         }
 
-        mingw_gettimeofday(&finish, 0);
+        time(&finish);
         if(howLong){
-            long seconds = finish.tv_sec - start.tv_sec;
-            long microseconds = finish.tv_usec - start.tv_usec;
-            double elapsed = seconds + microseconds*1e-6;
+            time_t elapsed = finish - start;
             cout << elapsed;
         }
 
@@ -283,11 +283,9 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
 
         } while (bestChild >= bestParent);
 
-        mingw_gettimeofday(&finish, 0);
+        time(&finish);
         if(howLong){
-            long seconds = finish.tv_sec - start.tv_sec;
-            long microseconds = finish.tv_usec - start.tv_usec;
-            double elapsed = seconds + microseconds*1e-6;
+            time_t elapsed = finish - start;
             cout << elapsed;
         }
 
