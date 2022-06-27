@@ -5,10 +5,11 @@
 #include <random>
 
 using namespace std;
-vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpackSize, int iterations, bool uniformRealDistributionIsSet) {
+vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpackSize, int iterations,
+                                         bool uniformRealDistributionIsSet, int ifScript) {
     shuffle(begin(data), end(data), mt19937(random_device()()));
-    int result = knapsack(data, backpackSize);
-    int nextResult, bestResult;
+    int score = knapsack(data, backpackSize);
+    int nextResult, bestScore;
     double boltzmannDistribution;
     vector<pair<int, int>> bestSolution = data;
     vector<pair<int, int>> nextSolution = data;
@@ -21,33 +22,37 @@ vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpa
     for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
         shuffle(begin(nextSolution), end(nextSolution), gen);
         nextResult = knapsack(nextSolution, backpackSize);
-        boltzmannDistribution = exp(-abs(result - nextResult) / (iterations/(iteration_counter+1)));
-        if ( nextResult < result ){
+        boltzmannDistribution = exp(-abs(score - nextResult) / (iterations / (iteration_counter + 1)));
+        if (nextResult < score ){
             data = nextSolution;
-            result = nextResult;
+            score = nextResult;
             //rozkład liniowy
         } else if (uniformRealDistributionIsSet && (uniformRealDistribution(gen) < boltzmannDistribution)) {
             data = nextSolution;
-            result = nextResult;
+            score = nextResult;
             //rozkład normalny
         } else if (!uniformRealDistributionIsSet && (normalDistribution(gen) < boltzmannDistribution)) {
             data = nextSolution;
-            result = nextResult;
+            score = nextResult;
         }
-        bestResult = knapsack(bestSolution, backpackSize);
-        if (result < bestResult){
+        bestScore = knapsack(bestSolution, backpackSize);
+        if (score < bestScore){
             bestSolution = data;
-            bestResult = result;
+            bestScore = score;
         }
+        if (ifScript) cout << iteration_counter << " " << score << " " << bestScore << endl;
     }
-    cout << "Wartosc plecaka: " << bestResult << endl;
+    if (ifScript != 1) {
+        cout << "Wartosc plecaka: " << bestScore << endl;
 
-    int tmp=0;
+        int tmp = 0;
 
-    cout << "Przedmioty: " << endl;
-    for(int j = 0; tmp < bestResult; j++){
-        tmp = tmp + bestSolution[j].second;
-        cout << bestSolution[j].first << " " << bestSolution[j].second << endl;
+        cout << "Przedmioty: " << endl;
+        for (int j = 0; tmp < bestScore; j++) {
+            tmp = tmp + data[j].second;
+            cout << data[j].first << " " << data[j].second << endl;
+        }
+
     }
     return bestSolution;
 }

@@ -6,7 +6,7 @@
 #include <random>
 
 using namespace std;
-vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, int tabu_size, int iterations){
+vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, int tabu_size, int iterations, int ifScript){
 
     shuffle(begin(data), end(data), mt19937(random_device()()));
     int score = knapsack(data, backpackSize);
@@ -45,15 +45,19 @@ vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, 
         else{
             break;
         }
+        if (ifScript) cout << iteration_counter << " " << score << " " << bestScore << endl;
     }
-    cout << "Wartosc plecaka: " << bestScore << endl;
+    if (ifScript != 1) {
+        cout << "Wartosc plecaka: " << bestScore << endl;
 
-    int tmp=0;
+        int tmp = 0;
 
-    cout << "Przedmioty: " << endl;
-    for(int j = 0; tmp < bestScore; j++){
-        tmp = tmp + bestSolution[j].second;
-        cout << bestSolution[j].first << " " << bestSolution[j].second << endl;
+        cout << "Przedmioty: " << endl;
+        for (int j = 0; tmp < bestScore; j++) {
+            tmp = tmp + data[j].second;
+            cout << data[j].first << " " << data[j].second << endl;
+        }
+
     }
     return bestSolution;
 }

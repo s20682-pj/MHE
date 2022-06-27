@@ -65,7 +65,7 @@ cout << "hello world";
     auto crossing = args(argc, argv, "crossing", string("half"));
     auto populationSize = args(argc, argv, "populationSize", 16);
     auto mutation = args(argc, argv, "mutation", string("random"));
-    auto ending = args(argc, argv, "ending", string("best"));
+    auto ending = args(argc, argv, "ending", string("generations"));
     auto generations = args(argc, argv, "generations", 1);
     auto ifScript = args(argc, argv, "script", 0);
 
@@ -86,11 +86,11 @@ cout << "hello world";
     if (method == "hc") {
         hillClimbing(data, backpackSize, iterations, ifScript);
     } else if (method == "random") {
-        hillClimbingRandom(data, backpackSize, iterations);
+        hillClimbingRandom(data, backpackSize, iterations, ifScript);
     } else if (method == "tabu") {
-        tabuSearch(data, backpackSize, tabu_size, iterations);
+        tabuSearch(data, backpackSize, tabu_size, iterations, ifScript);
     } else if (method == "sa") {
-        simulatedAnnealing(data, backpackSize, iterations, uniformRealDistributionIsSet);
+        simulatedAnnealing(data, backpackSize, iterations, uniformRealDistributionIsSet, ifScript);
     }
     else if (method == "genetic"){
         genetic(data, backpackSize, populationSize, crossing, mutation, ending, generations);

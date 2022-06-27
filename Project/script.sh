@@ -1,15 +1,14 @@
-#!/usr/bin/env bash
-./../build/KnapsackProblem -fname data_test.csv -method hc > resultHillClimbing.txt
-./../build/KnapsackProblem -fname data_test.csv -method random > resultHillClimbingRandom.txt
-./../build/KnapsackProblem -fname data_test.csv -method tabu > resultTabu.txt
-./../build/KnapsackProblem -fname data_test.csv -method sa > resultSimulatedAnnealing.txt
-./../build/KnapsackProblem -fname data_test.csv -method genetic > resultGenetic.txt
+./cmake-build-debug/KnapsackProblem.exe -fname ./cmake-build-debug/data_test.csv -method hc -script 1 > resultHillClimbing.txt
+./cmake-build-debug/KnapsackProblem.exe -fname ./cmake-build-debug/data_test.csv -method random -script 1 > resultRandomHillClimbing.txt
+./cmake-build-debug/KnapsackProblem.exe -fname ./cmake-build-debug/data_test.csv -method tabu -script 1 > resultTabu.txt
+./cmake-build-debug/KnapsackProblem.exe -fname ./cmake-build-debug/data_test.csv -method sa -script 1 > resultSimulatedAnnealing.txt
+./cmake-build-debug/KnapsackProblem.exe -fname ./cmake-build-debug/data_test.csv -method genetic -generations 1000 -script 1 > resultGenetic.txt
 
 gnuplot -e "plot
  'resultHillClimbing.txt' u 1:3 w lines,
- 'resultHillClimbingRandom.txt' u 1:3 w lines,
+ 'resultRandomHillClimbing.txt' u 1:3 w lines,
  'resultTabu.txt' u 1:3 w lines,
  'resultSimulatedAnnealing.txt' u 1:3 w lines,
  'resultGenetic.txt' u 1:3 w lines" -p
 
-rm resultHillClimbing.txt resultHillClimbingRandom.txt resultTabu.txt resultSimulatedAnnealing.txt resultGenetic.txt
+rm resultHillClimbing.txt resultRandomHillClimbing.txt resultTabu.txt resultSimulatedAnnealing.txt resultGenetic.txt
