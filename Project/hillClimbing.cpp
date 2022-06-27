@@ -2,10 +2,13 @@
 #include <random>
 #include <algorithm>
 #include <iostream>
+#include <ctime>
 
 using namespace std;
 
-vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSize, int iterations, int ifScript) {
+vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSize, int iterations, int ifScript, int howLong) {
+    struct timeval start, finish;
+    mingw_gettimeofday(&start, 0);
 
     shuffle(begin(data), end(data), mt19937(random_device()()));
     int score = knapsack(data, backpackSize);
@@ -25,7 +28,16 @@ vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSiz
         }
         if (ifScript) cout << iteration_counter << " " << bestScore << endl;
     }
-    if (ifScript != 1) {
+
+    mingw_gettimeofday(&finish, 0);
+    if(howLong){
+        long seconds = finish.tv_sec - start.tv_sec;
+        long microseconds = finish.tv_usec - start.tv_usec;
+        double elapsed = seconds + microseconds*1e-6;
+        cout << elapsed;
+    }
+
+    if (ifScript != 1 and howLong != 1) {
         cout << "Wartosc plecaka: " << bestScore << endl;
 
         int tmp = 0;
@@ -40,7 +52,10 @@ vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSiz
     return bestSolution;
 }
 
-vector<pair<int, int>> hillClimbingRandom(vector<pair<int, int>> data, int binSize, int iterations, int ifScript) {
+vector<pair<int, int>> hillClimbingRandom(vector<pair<int, int>> data, int binSize, int iterations, int ifScript, int howLong) {
+    struct timeval start, finish;
+    mingw_gettimeofday(&start, 0);
+
     shuffle(begin(data), end(data), mt19937(random_device()()));
     int score = knapsack(data, binSize);
     int iteration_counter;
@@ -59,8 +74,15 @@ vector<pair<int, int>> hillClimbingRandom(vector<pair<int, int>> data, int binSi
         }
         if (ifScript) cout << iteration_counter << " " << score << endl;
     }
+    mingw_gettimeofday(&finish, 0);
+    if(howLong){
+        long seconds = finish.tv_sec - start.tv_sec;
+        long microseconds = finish.tv_usec - start.tv_usec;
+        double elapsed = seconds + microseconds*1e-6;
+        cout << elapsed;
+    }
 
-    if (ifScript != 1) {
+    if (ifScript != 1 and howLong !=1) {
         cout << "Wartosc plecaka: " << newScore << endl;
 
         int tmp = 0;

@@ -6,7 +6,9 @@
 #include <random>
 
 using namespace std;
-vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, int tabu_size, int iterations, int ifScript){
+vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, int tabu_size, int iterations, int ifScript, int howLong){
+    struct timeval start, finish;
+    mingw_gettimeofday(&start, 0);
 
     shuffle(begin(data), end(data), mt19937(random_device()()));
     int score = knapsack(data, backpackSize);
@@ -47,7 +49,15 @@ vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, 
         }
         if (ifScript) cout << iteration_counter << " " << bestScore << endl;
     }
-    if (ifScript != 1) {
+    mingw_gettimeofday(&finish, 0);
+    if(howLong){
+        long seconds = finish.tv_sec - start.tv_sec;
+        long microseconds = finish.tv_usec - start.tv_usec;
+        double elapsed = seconds + microseconds*1e-6;
+        cout << elapsed;
+    }
+
+    if (ifScript != 1 and howLong !=1) {
         cout << "Wartosc plecaka: " << bestScore << endl;
 
         int tmp = 0;

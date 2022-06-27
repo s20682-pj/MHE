@@ -23,7 +23,10 @@ vector<vector<bool>> generatePopulation(int populationSize, int dataSize) {
 }
 
 vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int populationSize, const string &crossing,
-                             const string &mutation, const string &ending, int generations, int ifScript) {
+                             const string &mutation, const string &ending, int generations, int ifScript, int howLong) {
+    struct timeval start, finish;
+    mingw_gettimeofday(&start, 0);
+
     //generate chromosomes
     shuffle(begin(data), end(data), mt19937(random_device()()));
     vector<vector<bool>> population;
@@ -175,7 +178,15 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
             }
         }
 
-        if (ifScript != 1){
+        mingw_gettimeofday(&finish, 0);
+        if(howLong){
+            long seconds = finish.tv_sec - start.tv_sec;
+            long microseconds = finish.tv_usec - start.tv_usec;
+            double elapsed = seconds + microseconds*1e-6;
+            cout << elapsed;
+        }
+
+        if (ifScript != 1 and howLong != 1){
             cout << "Wartosc plecaka: " << best << endl;
             //cout << bestIndex << endl;
 
@@ -272,12 +283,22 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
 
         } while (bestChild >= bestParent);
 
-        cout << "Wartosc plecaka: " << bestParent << endl;
+        mingw_gettimeofday(&finish, 0);
+        if(howLong){
+            long seconds = finish.tv_sec - start.tv_sec;
+            long microseconds = finish.tv_usec - start.tv_usec;
+            double elapsed = seconds + microseconds*1e-6;
+            cout << elapsed;
+        }
+
         //cout << bestIndex << endl;
 
-        for (int i = 0; i < population.size(); i++) {
-            if (population[bestIndexParent][i]) {
-                cout << "Rozmiar " << data[i].first << " Wartosc " << data[i].second << endl;
+        if (ifScript != 1 and howLong != 1){
+            cout << "Wartosc plecaka: " << bestParent << endl;
+            for (int i = 0; i < population.size(); i++) {
+                if (population[bestIndexParent][i]) {
+                    cout << "Rozmiar " << data[i].first << " Wartosc " << data[i].second << endl;
+                }
             }
         }
     }

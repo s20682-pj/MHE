@@ -8,7 +8,8 @@ gnuplot -e "plot
  'resultHillClimbing.txt' u 1:2 w lines,
  'resultRandomHillClimbing.txt' u 1:2 w lines,
  'resultTabu.txt' u 1:2 w lines,
- 'resultSimulatedAnnealing.txt' u 1:2 w lines,
- 'resultGenetic.txt' u 1:2 w lines" -p
+ 'resultSimulatedAnnealing.txt' u 1:2 w lines" -p
+
+gnuplot -e "'resultGenetic.txt' u 1:2 w lines" -p
 
 rm resultHillClimbing.txt resultRandomHillClimbing.txt resultTabu.txt resultSimulatedAnnealing.txt resultGenetic.txt

@@ -67,6 +67,7 @@ int main(int argc, char **argv) {
     auto ending = args(argc, argv, "ending", string("generations"));
     auto generations = args(argc, argv, "generations", 3);
     auto ifScript = args(argc, argv, "script", 0);
+    auto howLong = args(argc, argv, "howLong", 0);
 
     vector<pair<int, int>> data;
 
@@ -83,16 +84,16 @@ int main(int argc, char **argv) {
     }
 
     if (method == "hc") {
-        hillClimbing(data, backpackSize, iterations, ifScript);
+        hillClimbing(data, backpackSize, iterations, ifScript, howLong);
     } else if (method == "random") {
-        hillClimbingRandom(data, backpackSize, iterations, ifScript);
+        hillClimbingRandom(data, backpackSize, iterations, ifScript, howLong);
     } else if (method == "tabu") {
-        tabuSearch(data, backpackSize, tabu_size, iterations, ifScript);
+        tabuSearch(data, backpackSize, tabu_size, iterations, ifScript, howLong);
     } else if (method == "sa") {
-        simulatedAnnealing(data, backpackSize, iterations, uniformRealDistributionIsSet, ifScript);
+        simulatedAnnealing(data, backpackSize, iterations, uniformRealDistributionIsSet, ifScript, howLong);
     }
     else if (method == "genetic"){
-        genetic(data, backpackSize, populationSize, crossing, mutation, ending, generations, ifScript);
+        genetic(data, backpackSize, populationSize, crossing, mutation, ending, generations, ifScript, howLong);
     }
 
     return 0;
