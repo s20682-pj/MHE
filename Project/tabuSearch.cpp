@@ -4,13 +4,10 @@
 #include <ctime>
 #include <iostream>
 #include <random>
-#include <ctime>
-#include <cstdio>
 
 using namespace std;
 vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, int tabu_size, int iterations, int ifScript, int howLong){
-    time_t start, finish;
-    time(&start);
+    clock_t start = clock();
 
     shuffle(begin(data), end(data), mt19937(random_device()()));
     int score = knapsack(data, backpackSize);
@@ -51,9 +48,9 @@ vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, 
         }
         if (ifScript) cout << iteration_counter << " " << bestScore << endl;
     }
-    time(&finish);
+    clock_t finish = clock();
     if(howLong){
-        time_t elapsed = finish - start;
+        double elapsed = double(finish - start)/CLOCKS_PER_SEC;
         cout << elapsed;
     }
 

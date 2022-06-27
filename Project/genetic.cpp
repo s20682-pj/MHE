@@ -2,7 +2,6 @@
 #include <random>
 #include <algorithm>
 #include <ctime>
-#include <cstdio>
 
 using namespace std;
 
@@ -26,8 +25,7 @@ vector<vector<bool>> generatePopulation(int populationSize, int dataSize) {
 
 vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int populationSize, const string &crossing,
                              const string &mutation, const string &ending, int generations, int ifScript, int howLong) {
-    time_t start, finish;
-    time(&start);
+    clock_t start = clock();
 
     //generate chromosomes
     shuffle(begin(data), end(data), mt19937(random_device()()));
@@ -180,9 +178,9 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
             }
         }
 
-        time(&finish);
+        clock_t finish = clock();
         if(howLong){
-            time_t elapsed = finish - start;
+            double elapsed = double(finish - start)/CLOCKS_PER_SEC;
             cout << elapsed;
         }
 
@@ -283,9 +281,9 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
 
         } while (bestChild >= bestParent);
 
-        time(&finish);
+        clock_t finish = clock();
         if(howLong){
-            time_t elapsed = finish - start;
+            double elapsed = double(finish - start)/CLOCKS_PER_SEC;
             cout << elapsed;
         }
 
