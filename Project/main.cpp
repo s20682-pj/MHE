@@ -65,7 +65,7 @@ int main(int argc, char **argv) {
     auto populationSize = args(argc, argv, "populationSize", 16);
     auto mutation = args(argc, argv, "mutation", string("random"));
     auto ending = args(argc, argv, "ending", string("generations"));
-    auto generations = args(argc, argv, "generations", 1);
+    auto generations = args(argc, argv, "generations", 3);
     auto ifScript = args(argc, argv, "script", 0);
 
     vector<pair<int, int>> data;
@@ -92,7 +92,7 @@ int main(int argc, char **argv) {
         simulatedAnnealing(data, backpackSize, iterations, uniformRealDistributionIsSet, ifScript);
     }
     else if (method == "genetic"){
-        genetic(data, backpackSize, populationSize, crossing, mutation, ending, generations);
+        genetic(data, backpackSize, populationSize, crossing, mutation, ending, generations, ifScript);
     }
 
     return 0;
