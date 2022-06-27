@@ -10,6 +10,6 @@ gnuplot -e "plot
  'resultTabu.txt' u 1:2 w lines,
  'resultSimulatedAnnealing.txt' u 1:2 w lines" -p
 
-gnuplot -e "'resultGenetic.txt' u 1:2 w lines" -p
+gnuplot -e "plot 'resultGenetic.txt' u 1:2 w lines" -p
 
 rm resultHillClimbing.txt resultRandomHillClimbing.txt resultTabu.txt resultSimulatedAnnealing.txt resultGenetic.txt

@@ -48,7 +48,7 @@ vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpa
     clock_t finish = clock();
     if(howLong){
         double elapsed = double(finish - start)/CLOCKS_PER_SEC;
-        cout  << "SimulatedAnnealing " << elapsed << endl;
+        cout  << "SA " << elapsed << endl;
     }
 
     if (ifScript != 1 and howLong != 1) {

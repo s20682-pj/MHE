@@ -31,7 +31,7 @@ vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSiz
     clock_t finish = clock();
     if(howLong){
         double elapsed = double(finish - start)/CLOCKS_PER_SEC;
-        cout  << "HillClimbing " << endl;
+        cout  << "HC " << elapsed << endl;
     }
 
     if (ifScript != 1 and howLong != 1) {
@@ -73,7 +73,7 @@ vector<pair<int, int>> hillClimbingRandom(vector<pair<int, int>> data, int binSi
     clock_t finish = clock();
     if(howLong){
         double elapsed = double(finish - start)/CLOCKS_PER_SEC;
-        cout  << "HillClimbingRandom " << elapsed << endl;
+        cout  << "HCR " << elapsed << endl;
     }
 
     if (ifScript != 1 and howLong !=1) {
