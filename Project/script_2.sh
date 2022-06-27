@@ -6,11 +6,11 @@
 ./cmake-build-debug/KnapsackProblem -fname ./cmake-build-debug/data_test.csv -method genetic -ending best -howLong 1 > resultGeneticBest.txt
 
 gnuplot -e "plot
- 'resultHillClimbing.txt' u 1:2 w lines,
- 'resultRandomHillClimbing.txt' u 1:2 w lines,
- 'resultTabu.txt' u 1:2 w lines,
- 'resultSimulatedAnnealing.txt' u 1:2 w lines,
- 'resultGeneticGenerations.txt' u 1:2 w lines,
- 'resultGeneticBest.txt' u 1:2 w lines" -p
+ 'resultHillClimbing.txt' u 1 w lines,
+ 'resultRandomHillClimbing.txt' u 1 w lines,
+ 'resultTabu.txt' u 1 w lines,
+ 'resultSimulatedAnnealing.txt' u 1 w lines,
+ 'resultGeneticGenerations.txt' u 1 w lines,
+ 'resultGeneticBest.txt' u 1 w lines" -p
 
 rm resultHillClimbing.txt resultRandomHillClimbing.txt resultTabu.txt resultSimulatedAnnealing.txt resultGeneticGenerations.txt resultGeneticBest.txt
