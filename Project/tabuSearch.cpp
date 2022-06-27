@@ -45,7 +45,7 @@ vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, 
         else{
             break;
         }
-        if (ifScript) cout << iteration_counter << " " << score << " " << bestScore << endl;
+        if (ifScript) cout << iteration_counter << " " << bestScore << endl;
     }
     if (ifScript != 1) {
         cout << "Wartosc plecaka: " << bestScore << endl;

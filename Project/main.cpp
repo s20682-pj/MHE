@@ -55,7 +55,6 @@ auto args = [](int argc, char** argv, string name, auto default_value) -> declty
 };
 
 int main(int argc, char **argv) {
-cout << "hello world";
     auto fname = args(argc, argv, "fname", string(""));
     auto iterations = args(argc, argv, "iterations", 1000);
     auto method = args(argc, argv, "method", string("hc"));

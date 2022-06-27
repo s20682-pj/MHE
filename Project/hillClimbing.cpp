@@ -23,7 +23,7 @@ vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSiz
                 bestSolution = data;
             } else swap(data[i + 1], data[i]);
         }
-        if (ifScript) cout << iteration_counter << " " << score << " " << bestScore << endl;
+        if (ifScript) cout << iteration_counter << " " << bestScore << endl;
     }
     if (ifScript != 1) {
         cout << "Wartosc plecaka: " << bestScore << endl;
@@ -52,12 +52,12 @@ vector<pair<int, int>> hillClimbingRandom(vector<pair<int, int>> data, int binSi
         for (int j = 0; j < data.size(); ++j) {
             swap(data[x], data[j]);
             newScore = knapsack(data, binSize);
-            if (newScore < score) {
+            if (newScore > score) {
                 score = newScore;
                 bestSolution = data;
             } else swap(data[j], data[x]);
         }
-        if (ifScript) cout << iteration_counter << " " << score << " " << newScore << endl;
+        if (ifScript) cout << iteration_counter << " " << score << endl;
     }
 
     if (ifScript != 1) {

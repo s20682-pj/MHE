@@ -36,11 +36,11 @@ vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpa
             score = nextResult;
         }
         bestScore = knapsack(bestSolution, backpackSize);
-        if (score < bestScore){
+        if (score > bestScore){
             bestSolution = data;
             bestScore = score;
         }
-        if (ifScript) cout << iteration_counter << " " << score << " " << bestScore << endl;
+        if (ifScript) cout << iteration_counter << " " << bestScore << endl;
     }
     if (ifScript != 1) {
         cout << "Wartosc plecaka: " << bestScore << endl;
