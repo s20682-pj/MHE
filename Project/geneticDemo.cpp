@@ -4,16 +4,22 @@
 
 using namespace std;
 
-int score(vector<vector<int>> parent){
+vector<int> fitness(vector<vector<int>> candidates){
+    vector<int> score;
     int value = 0;
     float finalScore;
-    for(int i = 0; i < 8; i++){
-        if(parent[0][i] == 1){
-            value += 1;
+    for(int k=0; k < candidates.size(); k++){
+        finalScore = 0;
+        for (int i = 0; i < 8; ++i) {
+            if(candidates[k][i] == 1){
+                value += 1;
+            }
         }
+        finalScore = (value*100)/8;
+        score.push_back(finalScore);
     }
-    finalScore = (value*100)/8;
-    return finalScore;
+
+    return score;
 }
 
 vector<vector<int>> candidatesForParent(){
@@ -34,19 +40,6 @@ vector<vector<int>> candidatesForParent(){
     return candidates;
 }
 
-vector<int> fitness(vector<vector<int>> candidates){
-    vector<int> score;
-    int value = 0;
-    for(int k=0; k < candidates.size(); k++){
-        for (int i = 0; i < 8; ++i) {
-            if(candidates[k][i] == 1){
-                value += 1;
-                }
-            }
-        score.push_back(value);
-        }
-    return score;
-}
 vector<vector<int>> roulette(vector<int> candidatesScores, int sumOfFitness, vector<vector<int>> candidates) {
     vector<vector<int>> choosen;
     vector<int> temp;
@@ -102,8 +95,8 @@ vector<vector<int>> geneticDemo(vector<vector<int>> parent){
     }
     cout << endl;
     cout << "Przyjmujemy, ze najlepszy zestaw genow to: '11111111'" << endl;
-    int scoreFirstParent = score(parent);
-    cout << "Ten zestaw genow w porownaniu do idealnego zestawu zgadza sie w " << scoreFirstParent << "%";
+    vector<int> scoreFirstParent = fitness(parent);
+    cout << "Ten zestaw genow w porownaniu do idealnego zestawu zgadza sie w " << scoreFirstParent[0] << "%" << endl;
     cout << "Do miana drugiego rodzica kandyduja 3 inne koty o genach: ";
 
     vector<vector<int>> candidates = candidatesForParent();
@@ -128,5 +121,5 @@ vector<vector<int>> geneticDemo(vector<vector<int>> parent){
     for(int j = 0; j < 8; j++){
         cout << winner[0][j] << " ";
     }
-    
+
 }
