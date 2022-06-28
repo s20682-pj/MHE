@@ -93,9 +93,9 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
 //                    cout << c << endl;
 //                }
 //
-//                cout << "contestant" << endl;
+//              cout << "contestant" << endl;
 //                for(auto d: contestant){
-//                    cout << d << endl;
+//                    cout << d;
 //                }
 
                 //tournament

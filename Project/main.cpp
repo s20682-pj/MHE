@@ -3,6 +3,7 @@
 #include <complex>
 #include <any>
 #include <fstream>
+#include <iterator>
 
 #include "data.h"
 
@@ -31,6 +32,23 @@ vector<pair<int, int>> loadProblem(string fname){
         file.close();
     }
     return v;
+}
+
+vector<vector<int>> loadParent(string fname) {
+    vector<vector<int>> parent;
+    fstream file;
+    int x;
+    vector<int> temp;
+
+    file.open(fname);
+    while(file >> x){
+        temp.push_back(x);
+
+    }
+    parent.push_back(temp);
+
+    file.close();
+    return parent;
 }
 
 auto args = [](int argc, char** argv, string name, auto default_value) -> decltype(default_value) {
@@ -70,18 +88,23 @@ int main(int argc, char **argv) {
     auto howLong = args(argc, argv, "howLong", 0);
 
     vector<pair<int, int>> data;
+    vector<vector<int>> parent;
 
-    if(fname==""){
-        cout<<"Enter size and press enter"<<endl;
-        vector <pair<int, int>> trash;
+    if (fname == "") {
+        cout << "Enter size and press enter" << endl;
+        vector<pair<int, int>> trash;
         int temp1;
         int temp2;
-        while(cin >> temp1, temp2){
+        while (cin >> temp1, temp2) {
             trash.emplace_back(temp1, temp2);
         }
-    } else{
+    } else if(fname == "parent.txt"){
+        parent = loadParent(fname);
+    }
+    else {
         data = loadProblem(fname);
     }
+
 
     if (method == "hc") {
         hillClimbing(data, backpackSize, iterations, ifScript, howLong);
@@ -91,10 +114,12 @@ int main(int argc, char **argv) {
         tabuSearch(data, backpackSize, tabu_size, iterations, ifScript, howLong);
     } else if (method == "sa") {
         simulatedAnnealing(data, backpackSize, iterations, uniformRealDistributionIsSet, ifScript, howLong);
-    }
-    else if (method == "genetic"){
+    } else if (method == "genetic") {
         genetic(data, backpackSize, populationSize, crossing, mutation, ending, generations, ifScript, howLong);
+    } else if (method == "demo") {
+        geneticDemo(parent);
     }
+
 
     return 0;
 

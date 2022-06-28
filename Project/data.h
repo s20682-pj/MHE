@@ -20,4 +20,5 @@ vector<vector<bool>> genetic_crossing(string crossing, vector<int> parent, vecto
                                       vector<pair<int, int>> data);
 vector<int> genetic_tournament(vector<int> contestant, vector<int> contestantFitness, vector<int> parent);
 vector<int> fitness(int populationSize, vector<pair<int, int>> data, int backpackSize, vector<vector<bool>> population);
+vector<vector<int>> geneticDemo(vector<vector<int>> parent);
 #endif //KNAPSACKPROBLEM_DATA_H
