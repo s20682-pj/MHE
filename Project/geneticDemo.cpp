@@ -195,15 +195,15 @@ vector<vector<int>> geneticDemo(vector<vector<int>> parent){
 
     parent = child;
 
-    child.clear();
-    candidates.clear();
-    candidatesScores.clear();
-    scoreParent.clear();
-    choosen.clear();
-    choosenCandidatesScores.clear();
-    winner.clear();
-
     for(int i = 2; i < 1001; i++){
+        child.clear();
+        candidates.clear();
+        candidatesScores.clear();
+        scoreParent.clear();
+        choosen.clear();
+        choosenCandidatesScores.clear();
+        winner.clear();
+
         candidates = candidatesForParent();
 
         if (i == 2 or i == 3 or i == 1000){
@@ -270,12 +270,6 @@ vector<vector<int>> geneticDemo(vector<vector<int>> parent){
 
         parent = child;
 
-        child.clear();
-        candidates.clear();
-        candidatesScores.clear();
-        scoreParent.clear();
-        choosen.clear();
-        choosenCandidatesScores.clear();
-        winner.clear();
     }
+    return child;
 }
