@@ -107,7 +107,7 @@ int main(int argc, char **argv) {
 
 
     if (method == "hc") {
-        hillClimbing(data, backpackSize, iterations, ifScript, howLong);
+        hillClimbing(data, backpackSize, ifScript, howLong);
     } else if (method == "random") {
         hillClimbingRandom(data, backpackSize, iterations, ifScript, howLong);
     } else if (method == "tabu") {

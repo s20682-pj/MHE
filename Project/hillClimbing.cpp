@@ -6,27 +6,32 @@
 
 using namespace std;
 
-vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSize, int iterations, int ifScript, int howLong) {
+vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSize, int ifScript, int howLong) {
     clock_t start = clock();
 
     shuffle(begin(data), end(data), mt19937(random_device()()));
     int score = knapsack(data, backpackSize);
     int bestScore = score;
-    int iteration_counter;
     vector<pair<int, int>> bestSolution = data;
+    int x = rand() % (end(data) - begin(data));
 
-    for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
-        int x = rand() % (end(data) - begin(data));
-        for (int i = 0; i < data.size(); ++i) {
-            swap(data[x], data[i]);
-            score = knapsack(data, backpackSize);
-            if (score > bestScore) {
-                bestScore = score;
-                bestSolution = data;
-            } else swap(data[i + 1], data[i]);
-        }
-        if (ifScript) cout << iteration_counter << " " << bestScore << endl;
+    while(true){
+        swap(data[x], data[x+1]);
+        score = knapsack(data, backpackSize);
+        if (score > bestScore) {
+            bestScore = score;
+            bestSolution = data;
+        }else break;
     }
+
+//    for (int i = 0; i < data.size(); ++i) {
+//        swap(data[x], data[i]);
+//        score = knapsack(data, backpackSize);
+//        if (score > bestScore) {
+//            bestScore = score;
+//            bestSolution = data;
+//        } else swap(data[x], data[i]);
+//    }
 
     clock_t finish = clock();
     if(howLong){

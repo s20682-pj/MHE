@@ -8,7 +8,7 @@
 using namespace std;
 
 int knapsack(vector<pair<int, int>> data, int backpackSize);
-vector<pair<int,int>> hillClimbing(vector<pair<int, int>> data, int backpackSize, int iterations, int ifScript, int howLong);
+vector<pair<int,int>> hillClimbing(vector<pair<int, int>> data, int backpackSize, int ifScript, int howLong);
 vector<pair<int,int>> hillClimbingRandom(vector<pair<int, int>> data, int backpackSize, int iterations, int ifScript, int howLong);
 vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int binSize, int tabuSize, int iterations, int ifScript, int howLong);
 vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpackSize, int iterations,
