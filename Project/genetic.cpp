@@ -151,7 +151,7 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
                     }
                 }
                 ofstream myfile;
-                myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/resultGenetic.txt", fstream::app);
+                myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/Scripts/resultGenetic.txt", fstream::app);
                 myfile << iterations << "," << best << endl;
                 myfile.close();
             }
@@ -184,7 +184,7 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
         if(howLong){
             double elapsed = double(finish - start)/CLOCKS_PER_SEC;
             ofstream myfile;
-            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/result.txt", fstream::app);
+            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/Scripts/result.txt", fstream::app);
             myfile << "GG," << elapsed << endl;
             myfile.close();
         }
@@ -290,7 +290,7 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
         if(howLong){
             double elapsed = double(finish - start)/CLOCKS_PER_SEC;
             ofstream myfile;
-            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/result.txt", fstream::app);
+            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/Scripts/result.txt", fstream::app);
             myfile << "GB," << elapsed << endl;
             myfile.close();
         }

@@ -33,7 +33,7 @@ vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSiz
                 isBetter = true;
                 if(ifScript){
                     ofstream myfile;
-                    myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/resultHillClimbing.txt", fstream::app);
+                    myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/Scripts/resultHillClimbing.txt", fstream::app);
                     myfile << iteration << "," << bestScore << endl;
                     myfile.close();
                 }
@@ -57,7 +57,7 @@ vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSiz
     if(howLong){
         double elapsed = double(finish - start)/CLOCKS_PER_SEC;
         ofstream myfile;
-        myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/result.txt", fstream::app);
+        myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/Scripts/result.txt", fstream::app);
         myfile << "HC," << elapsed << endl;
         myfile.close();
     }
@@ -101,7 +101,7 @@ vector<pair<int, int>> hillClimbingRandom(vector<pair<int, int>> data, int binSi
         }
         if (ifScript){
             ofstream myfile;
-            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/resultRandomHillClimbing.txt", fstream::app);
+            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/Scripts/resultRandomHillClimbing.txt", fstream::app);
             myfile << iteration_counter << "," << score << endl;
             myfile.close();
         }
@@ -110,7 +110,7 @@ vector<pair<int, int>> hillClimbingRandom(vector<pair<int, int>> data, int binSi
     if(howLong){
         double elapsed = double(finish - start)/CLOCKS_PER_SEC;
         ofstream myfile;
-        myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/result.txt", fstream::app);
+        myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/Scripts/result.txt", fstream::app);
         myfile << "HCR," << elapsed << endl;
         myfile.close();
     }

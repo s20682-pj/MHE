@@ -45,7 +45,7 @@ vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpa
         }
         if (ifScript){
             ofstream myfile;
-            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/resultSimulatedAnnealing.txt", fstream::app);
+            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/Scripts/resultSimulatedAnnealing.txt", fstream::app);
             myfile << iteration_counter << "," << bestScore << endl;
             myfile.close();
         }
@@ -54,7 +54,7 @@ vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpa
     if(howLong){
         double elapsed = double(finish - start)/CLOCKS_PER_SEC;
         ofstream myfile;
-        myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/result.txt", fstream::app);
+        myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/Scripts/result.txt", fstream::app);
         myfile << "SA," << elapsed << endl;
         myfile.close();
     }

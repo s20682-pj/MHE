@@ -51,7 +51,7 @@ vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, 
         }
         if (ifScript){
             ofstream myfile;
-            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/resultTabu.txt", fstream::app);
+            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/Scripts/resultTabu.txt", fstream::app);
             myfile << iteration_counter << "," << bestScore << endl;
             myfile.close();
         }
@@ -60,7 +60,7 @@ vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, 
     if(howLong){
         double elapsed = double(finish - start)/CLOCKS_PER_SEC;
         ofstream myfile;
-        myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/result.txt", fstream::app);
+        myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/Scripts/result.txt", fstream::app);
         myfile << "Tabu," << elapsed << endl;
         myfile.close();
     }
