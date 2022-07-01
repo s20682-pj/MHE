@@ -17,11 +17,13 @@ vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, 
     bool betterSolutionIsFound;
     int tabuListOffset = 1;
     int iteration_counter;
-    srand((unsigned) time(NULL));
 
     for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
         betterSolutionIsFound = false;
-        int x = rand() % (end(data) - begin(data));
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<> distrib(0, data.size()-1);
+        int x = distrib(gen);
         for (int j = 0; j < data.size(); ++j) {
             swap(data[x], data[j]);
             score = knapsack(data, backpackSize);

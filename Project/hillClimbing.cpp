@@ -13,7 +13,10 @@ vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSiz
     int score = knapsack(data, backpackSize);
     int bestScore = score;
     vector<pair<int, int>> bestSolution = data;
-    int x = rand() % (end(data) - begin(data));
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distrib(0, data.size()-1);
+    int x = distrib(gen);
 
     while(true){
         swap(data[x], data[x+1]);
@@ -23,15 +26,14 @@ vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSiz
             bestSolution = data;
         }else break;
     }
-
-//    for (int i = 0; i < data.size(); ++i) {
-//        swap(data[x], data[i]);
-//        score = knapsack(data, backpackSize);
-//        if (score > bestScore) {
-//            bestScore = score;
-//            bestSolution = data;
-//        } else swap(data[x], data[i]);
-//    }
+    while(true){
+        swap(data[x], data[x-1]);
+        score = knapsack(data, backpackSize);
+        if (score > bestScore) {
+            bestScore = score;
+            bestSolution = data;
+        }else break;
+    }
 
     clock_t finish = clock();
     if(howLong){
@@ -64,7 +66,10 @@ vector<pair<int, int>> hillClimbingRandom(vector<pair<int, int>> data, int binSi
     vector<pair<int, int>> bestSolution = data;
 
     for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
-        int x = rand() % (end(data) - begin(data));
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<> distrib(0, data.size()-1);
+        int x = distrib(gen);
         for (int j = 0; j < data.size(); ++j) {
             swap(data[x], data[j]);
             newScore = knapsack(data, binSize);
