@@ -2,6 +2,7 @@
 #include <random>
 #include <algorithm>
 #include <ctime>
+#include <fstream>
 
 using namespace std;
 
@@ -89,9 +90,7 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
                 }
 
 //                cout << "contestantFitness" << endl;
-//                for(auto c: contestantFitness){
-//                    cout << c << endl;
-//                }
+//                -
 //
 //              cout << "contestant" << endl;
 //                for(auto d: contestant){
@@ -151,7 +150,10 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
                         i++;
                     }
                 }
-                cout << iterations << " " << best << endl;
+                ofstream myfile;
+                myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/resultGenetic.txt", fstream::app);
+                myfile << iterations << "," << best << endl;
+                myfile.close();
             }
 
             iterations++;
@@ -181,7 +183,10 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
         clock_t finish = clock();
         if(howLong){
             double elapsed = double(finish - start)/CLOCKS_PER_SEC;
-            cout  << "GG " << elapsed << endl;
+            ofstream myfile;
+            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/result.txt", fstream::app);
+            myfile << "GG," << elapsed << endl;
+            myfile.close();
         }
 
         if (ifScript != 1 and howLong != 1){
@@ -284,7 +289,10 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
         clock_t finish = clock();
         if(howLong){
             double elapsed = double(finish - start)/CLOCKS_PER_SEC;
-            cout  << "GB " << elapsed;
+            ofstream myfile;
+            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/result.txt", fstream::app);
+            myfile << "GB," << elapsed << endl;
+            myfile.close();
         }
 
         //cout << bestIndex << endl;

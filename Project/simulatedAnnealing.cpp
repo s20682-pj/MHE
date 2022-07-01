@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <random>
 #include <ctime>
+#include <fstream>
 
 using namespace std;
 vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpackSize, int iterations,
@@ -25,7 +26,7 @@ vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpa
     for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
         nextResult = knapsack(nextSolution, backpackSize);
         boltzmannDistribution = exp(-abs(score - nextResult) / (iterations / (iteration_counter + 1)));
-        if (nextResult < score ){
+        if (nextResult > score ){
             data = nextSolution;
             score = nextResult;
             //rozkład liniowy
@@ -42,12 +43,20 @@ vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpa
             bestSolution = data;
             bestScore = score;
         }
-        if (ifScript) cout << iteration_counter << " " << bestScore << endl;
+        if (ifScript){
+            ofstream myfile;
+            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/resultSimulatedAnnealing.txt", fstream::app);
+            myfile << iteration_counter << "," << bestScore << endl;
+            myfile.close();
+        }
     }
     clock_t finish = clock();
     if(howLong){
         double elapsed = double(finish - start)/CLOCKS_PER_SEC;
-        cout  << "SA " << elapsed << endl;
+        ofstream myfile;
+        myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/result.txt", fstream::app);
+        myfile << "SA," << elapsed << endl;
+        myfile.close();
     }
 
     if (ifScript != 1 and howLong != 1) {

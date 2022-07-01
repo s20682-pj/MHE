@@ -4,6 +4,7 @@
 #include <ctime>
 #include <iostream>
 #include <random>
+#include <fstream>
 
 using namespace std;
 vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, int tabu_size, int iterations, int ifScript, int howLong){
@@ -48,12 +49,20 @@ vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, 
         else{
             break;
         }
-        if (ifScript) cout << iteration_counter << " " << bestScore << endl;
+        if (ifScript){
+            ofstream myfile;
+            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/resultTabu.txt", fstream::app);
+            myfile << iteration_counter << "," << bestScore << endl;
+            myfile.close();
+        }
     }
     clock_t finish = clock();
     if(howLong){
         double elapsed = double(finish - start)/CLOCKS_PER_SEC;
-        cout  << "Tabu " << elapsed << endl;
+        ofstream myfile;
+        myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/result.txt", fstream::app);
+        myfile << "Tabu," << elapsed << endl;
+        myfile.close();
     }
 
     if (ifScript != 1 and howLong !=1) {

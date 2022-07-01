@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iostream>
 #include <ctime>
+#include <fstream>
 
 using namespace std;
 
@@ -31,7 +32,10 @@ vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSiz
                 bestSolution = data;
                 isBetter = true;
                 if(ifScript){
-                    cout << iteration << " " << bestScore << endl;
+                    ofstream myfile;
+                    myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/resultHillClimbing.txt", fstream::app);
+                    myfile << iteration << "," << bestScore << endl;
+                    myfile.close();
                 }
             } else{
                 swap(data[x], data[j]);
@@ -52,7 +56,10 @@ vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSiz
     clock_t finish = clock();
     if(howLong){
         double elapsed = double(finish - start)/CLOCKS_PER_SEC;
-        cout  << "HC " << elapsed << endl;
+        ofstream myfile;
+        myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/result.txt", fstream::app);
+        myfile << "HC," << elapsed << endl;
+        myfile.close();
     }
 
     if (ifScript != 1 and howLong != 1) {
@@ -92,12 +99,20 @@ vector<pair<int, int>> hillClimbingRandom(vector<pair<int, int>> data, int binSi
                 bestSolution = data;
             } else swap(data[j], data[x]);
         }
-        if (ifScript) cout << iteration_counter << " " << score << endl;
+        if (ifScript){
+            ofstream myfile;
+            myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/resultRandomHillClimbing.txt", fstream::app);
+            myfile << iteration_counter << "," << score << endl;
+            myfile.close();
+        }
     }
     clock_t finish = clock();
     if(howLong){
         double elapsed = double(finish - start)/CLOCKS_PER_SEC;
-        cout  << "HCR " << elapsed << endl;
+        ofstream myfile;
+        myfile.open ("C:/Users/Zazu/Desktop/studia/sem6/MHE/KnapsackProblem/result.txt", fstream::app);
+        myfile << "HCR," << elapsed << endl;
+        myfile.close();
     }
 
     if (ifScript != 1 and howLong !=1) {
