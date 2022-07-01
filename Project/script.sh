@@ -12,9 +12,9 @@ gnuplot -e "plot 'resultHillClimbing.txt' using 1:2 title 'score' with lines" -p
 #32 47
 
 gnuplot -e "plot
- 'resultRandomHillClimbing.txt' u 1:2 w lines,
- 'resultTabu.txt' u 1:2 w lines,
- 'resultSimulatedAnnealing.txt' u 1:2 w lines" -p
+ 'resultRandomHillClimbing.txt' u 1:2 title 'random' with lines,
+ 'resultTabu.txt' u 1:2 title 'tabu' with lines,
+ 'resultSimulatedAnnealing.txt' u 1:2 title 'sa' with lines" -p
 
 gnuplot -e "plot 'resultGenetic.txt' using 1:2 title 'score' with lines" -p
 
