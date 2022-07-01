@@ -17,22 +17,36 @@ vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSiz
     mt19937 gen(rd());
     uniform_int_distribution<> distrib(0, data.size()-1);
     int x = distrib(gen);
+    bool isBetter = true;
+    int iteration = 1;
 
-    while(true){
-        swap(data[x], data[x+1]);
-        score = knapsack(data, backpackSize);
-        if (score > bestScore) {
-            bestScore = score;
-            bestSolution = data;
-        }else break;
-    }
-    while(true){
-        swap(data[x], data[x-1]);
-        score = knapsack(data, backpackSize);
-        if (score > bestScore) {
-            bestScore = score;
-            bestSolution = data;
-        }else break;
+    while(isBetter){
+        isBetter = false;
+        for (int j = 0; j < data.size(); ++j) {
+            iteration++;
+            swap(data[x], data[j]);
+            score = knapsack(data, backpackSize);
+            if (score > bestScore) {
+                bestScore = score;
+                bestSolution = data;
+                isBetter = true;
+                if(ifScript){
+                    cout << iteration << " " << bestScore << endl;
+                }
+            } else{
+                swap(data[x], data[j]);
+            }
+        }
+        if(isBetter){
+            data = bestSolution;
+            x=0;
+        } else if(x < data.size() - 1) {
+            x++;
+        } else {
+            isBetter = false;
+        }
+
+
     }
 
     clock_t finish = clock();
