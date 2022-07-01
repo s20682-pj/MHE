@@ -23,7 +23,6 @@ vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpa
     int iteration_counter;
 
     for (iteration_counter = 0; iteration_counter < iterations; ++iteration_counter) {
-        shuffle(begin(nextSolution), end(nextSolution), gen);
         nextResult = knapsack(nextSolution, backpackSize);
         boltzmannDistribution = exp(-abs(score - nextResult) / (iterations / (iteration_counter + 1)));
         if (nextResult < score ){
