@@ -40,6 +40,8 @@ Podczas uruchamiania możnna wywołać następujące argumenty [do których algo
 
 -generations - po ilu generacjach ma zostać zakończony algorytm, jeśli wybrano warunek zakończenia generations (int) [5]
 
-Dołączony zostaje również skrypt, który ukazuje, jak szybko dany algorytm odnajduje najlepsze rozwiązanie, dzięki czemu możemy określić, która metoda jest najlepsza dla danego problemu.
+Dołączony zostaje również dwa skrypty: jeden, który pokazuje najlepsze wyniki osiągnięte przez algorytm, drugi, który pokazuje najlepszy osiągnięty czas
+
+Dołączony jest również algorytm, który pokazuje działanie algorytmu genetycznego na przykładzie rozmnażania się kotów.
 
 W folderze znajduje się również plik z przykładowymi danymi. Paramatry mają jako default ustawione najbardziej sprzyjające wartości.
