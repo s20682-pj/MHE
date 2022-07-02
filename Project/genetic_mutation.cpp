@@ -9,7 +9,7 @@ vector<vector<bool>> genetic_mutation(vector<vector<bool>> children, string muta
         random_device rd;
         mt19937 gen(rd());
         uniform_int_distribution<> distrib(0, 1);
-        uniform_int_distribution<> distrib2(0, data.size());
+        uniform_int_distribution<> distrib2(0, data.size()-1);
         int random4 = distrib(gen);
         int random5 = distrib2(gen);
         if (children[random4][random5]) {
