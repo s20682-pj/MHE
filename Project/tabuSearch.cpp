@@ -29,7 +29,7 @@ vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, 
             swap(data[x], data[j]);
             score = knapsack(data, backpackSize);
             bool isNotInTabu = find(tabuList.begin(), tabuList.end(), data) == tabuList.end();
-            if (score >= bestScore and  isNotInTabu){
+            if (score >= bestScore &&  isNotInTabu){
                 bestScore = score;
                 bestSolution = data;
                 betterSolutionIsFound = true;
@@ -65,7 +65,7 @@ vector<pair<int,int>> tabuSearch(vector<pair<int, int>> data, int backpackSize, 
         myfile.close();
     }
 
-    if (ifScript != 1 and howLong !=1) {
+    if (ifScript != 1 && howLong !=1) {
         cout << "Wartosc plecaka: " << bestScore << endl;
 
         int tmp = 0;
