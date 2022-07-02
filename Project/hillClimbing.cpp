@@ -62,7 +62,7 @@ vector<pair<int, int>> hillClimbing(vector<pair<int, int>> data, int backpackSiz
         myfile.close();
     }
 
-    if (ifScript != 1 and howLong != 1) {
+    if (ifScript != 1 && howLong != 1) {
         cout << "Wartosc plecaka: " << bestScore << endl;
 
         int tmp = 0;
@@ -115,7 +115,7 @@ vector<pair<int, int>> hillClimbingRandom(vector<pair<int, int>> data, int binSi
         myfile.close();
     }
 
-    if (ifScript != 1 and howLong !=1) {
+    if (ifScript != 1 && howLong !=1) {
         cout << "Wartosc plecaka: " << newScore << endl;
 
         int tmp = 0;
