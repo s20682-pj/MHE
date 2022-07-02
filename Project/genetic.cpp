@@ -73,7 +73,7 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
                 vector<int> parent;
 
                 //roulette
-                for (int j = 0; j < 4; j++) {
+                for (int j = 0; j < 2; j++) {
                     random_device rd;
                     mt19937 gen(rd());
                     uniform_int_distribution<> distrib(0, sumOfFitness);
@@ -85,8 +85,7 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
                             z++;
                         }
                     }
-                    contestantFitness.push_back(scores[z]);
-                    contestant.push_back(z);
+                    parent.push_back(z);
                 }
 
 //                cout << "contestantFitness" << endl;
@@ -98,7 +97,7 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
 //                }
 
                 //tournament
-                parent = genetic_tournament(contestant, contestantFitness, parent);
+                //parent = genetic_tournament(contestant, contestantFitness, parent);
 
                 //show winners
 //                cout << "winners" << endl;
@@ -189,7 +188,7 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
             myfile.close();
         }
 
-        if (ifScript != 1 and howLong != 1){
+        if (ifScript != 1 && howLong != 1){
             cout << "Wartosc plecaka: " << best << endl;
             //cout << bestIndex << endl;
 
@@ -241,12 +240,11 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
                             z++;
                         }
                     }
-                    contestantFitness.push_back(scores[z]);
-                    contestant.push_back(z);
+                    parent.push_back(z);
                 }
 
                 //tournament
-                parent = genetic_tournament(contestant, contestantFitness, parent);
+                //parent = genetic_tournament(contestant, contestantFitness, parent);
 
                 //crossing
                 children = genetic_crossing(crossing, parent, population, children, data);
@@ -297,7 +295,7 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
 
         //cout << bestIndex << endl;
 
-        if (ifScript != 1 and howLong != 1){
+        if (ifScript != 1 && howLong != 1){
             cout << "Wartosc plecaka: " << bestParent << endl;
             for (int i = 0; i < population.size(); i++) {
                 if (population[bestIndexParent][i]) {
