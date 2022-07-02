@@ -61,7 +61,7 @@ vector<pair<int,int>> simulatedAnnealing(vector<pair<int, int>> data, int backpa
         myfile.close();
     }
 
-    if (ifScript != 1 and howLong != 1) {
+    if (ifScript != 1 && howLong != 1) {
         cout << "Wartosc plecaka: " << score << endl;
 
         int tmp = 0;
