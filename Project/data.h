@@ -18,7 +18,7 @@ vector<vector<bool>> genetic(vector<pair<int, int>> data, int backpackSize, int 
 vector<vector<bool>> genetic_mutation(vector<vector<bool>> children, string mutation, vector<pair<int, int>> data);
 vector<vector<bool>> genetic_crossing(string crossing, vector<int> parent, vector<vector<bool>> population, vector<vector<bool>> children,
                                       vector<pair<int, int>> data);
-vector<int> genetic_tournament(vector<int> contestant, vector<int> contestantFitness, vector<int> parent);
+//vector<int> genetic_tournament(vector<int> contestant, vector<int> contestantFitness, vector<int> parent, vector<vector<bool>> population, vector<int> scores);
 vector<int> fitness(int populationSize, vector<pair<int, int>> data, int backpackSize, vector<vector<bool>> population);
 vector<vector<int>> geneticDemo(vector<vector<int>> parent);
 #endif //KNAPSACKPROBLEM_DATA_H
